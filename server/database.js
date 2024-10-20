@@ -1,15 +1,15 @@
-// const { response } = require("express"); //response ถูกนำเข้าจาก express 
-// const {Pool} = require("pg"); //Pool คือคลาสที่ใช้ในการจัดการการเชื่อมต่อกับฐานข้อมูล PostgreSQL
+const { response } = require("express"); //response ถูกนำเข้าจาก express 
+const {Pool} = require("pg"); //Pool คือคลาสที่ใช้ในการจัดการการเชื่อมต่อกับฐานข้อมูล PostgreSQL
 
-// const pool = new Pool({
-//     user: "postgres", // ชื่อผู้ใช้ในการเข้าถึงฐานข้อมูล
-//     password: "1234",  // รหัสผ่านสำหรับผู้ใช้
-//     host:"localhost", // ที่อยู่ของเซิร์ฟเวอร์ฐานข้อมูล
-//     port: 5432, // พอร์ตที่ใช้ในการเชื่อมต่อ (พอร์ตเริ่มต้นของ PostgreSQL)
-//     database:"yt_login_system" 
-// })
+const pool = new Pool({
+    user: "postgres", // ชื่อผู้ใช้ในการเข้าถึงฐานข้อมูล
+    password: "1234",  // รหัสผ่านสำหรับผู้ใช้
+    host:"localhost", // ที่อยู่ของเซิร์ฟเวอร์ฐานข้อมูล
+    port: 5432, // พอร์ตที่ใช้ในการเชื่อมต่อ (พอร์ตเริ่มต้นของ PostgreSQL)
+    database:"yt_login_system" 
+})
 
-// module.exports = pool;
+module.exports = pool;
 
 //************************************************************************** */
 // const createTblQry = `
@@ -37,14 +37,14 @@
 // ถ้ามีข้อผิดพลาดเกิดขึ้น (เช่น ฐานข้อมูลนี้มีอยู่แล้ว) ข้อผิดพลาดจะถูกจับและแสดงใน Console
 
 
-const { Pool } = require('pg');
-// ตั้งค่าการเชื่อมต่อกับ PostgreSQL
-const pool = new Pool({
-  user: 'postgres', // ชื่อผู้ใช้ฐานข้อมูลของคุณ
-  password: '1234', // รหัสผ่านฐานข้อมูล
-  host: 'localhost',
-  port: 5432, // พอร์ตที่ PostgreSQL ใช้ (ค่าเริ่มต้นคือ 5432)
-  database: 'login_test1' // ชื่อฐานข้อมูลของคุณ
-});
+// const { Pool } = require('pg');
+// // ตั้งค่าการเชื่อมต่อกับ PostgreSQL
+// const pool = new Pool({
+//   user: 'postgres', // ชื่อผู้ใช้ฐานข้อมูลของคุณ
+//   password: '1234', // รหัสผ่านฐานข้อมูล
+//   host: 'localhost',
+//   port: 5432, // พอร์ตที่ PostgreSQL ใช้ (ค่าเริ่มต้นคือ 5432)
+//   database: 'login_test1' // ชื่อฐานข้อมูลของคุณ
+// });
 
-module.exports = pool;
+// module.exports = pool;
