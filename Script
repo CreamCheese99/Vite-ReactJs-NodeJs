@@ -1,3 +1,5 @@
+Database Name : Inventory
+
 CREATE TABLE assets (
     id SERIAL PRIMARY KEY,
     main_item_name VARCHAR(255) NOT NULL,
