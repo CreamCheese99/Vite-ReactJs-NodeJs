@@ -1,7 +1,7 @@
 // import React from 'react'
 import Sidebar from '../components/Sidebar'
 import Form from '../components/Form'
-import Header from '../components/็Header'
+import Header from '../components/Header'
 
 function Insert() {
   return (
