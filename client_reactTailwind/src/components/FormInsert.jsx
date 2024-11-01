@@ -1,7 +1,7 @@
 import React from 'react'
 import renderInput from './RenderInput'
 import renderTextArea from './RenderTextArea'
-function Form() {
+function FormInsert() {
   return (
     <div className=" md:container md:mx-auto w-1/2 p-8 text-left">
         <h2 className="text-xl font-semibold text-pink-600 mb-4">เพิ่มข้อมูลพัสดุ</h2>
@@ -41,4 +41,4 @@ function Form() {
   )
 }
 
-export default Form
+export default FormInsert

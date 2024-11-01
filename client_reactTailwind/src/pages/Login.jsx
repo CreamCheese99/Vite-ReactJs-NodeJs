@@ -1,6 +1,7 @@
 // import React from 'react'
 import LoginForm from '../components/LoginForm'
 
+
 function Login() {
   return (
     <div className="bg-white flex justify-center items-center h-screen">
@@ -12,3 +13,4 @@ function Login() {
 }
 
 export default Login
+
