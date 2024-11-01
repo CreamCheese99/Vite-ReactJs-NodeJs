@@ -24,6 +24,7 @@ function Insert({ onInsertData }) {
       image_path: event.target.image_path.value,
       acquisition_date: event.target.acquisition_date.value,
     };
+    console.log("data in formSubmit"+ formData);
     
     onInsertData(formData); // เรียกใช้ฟังก์ชันเพื่อส่งข้อมูลไปยังเซิร์ฟเวอร์
   };
