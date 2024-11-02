@@ -6,21 +6,28 @@ import renderTextArea from './RenderTextArea';
 function FormInsert2({ onSubmit }) {
   
   const [formData,setFormData]=useState({
-    main_item_name:'',
-    asset_id:'',
+    // main_item_name:'',
+    // asset_id:'',
+    // quantity:'',
+    // unit:'',
+    // fiscal_year:'',
+    // budget_amount:'',
+    // fund_type:'',
+    // standard_price:'',
+    // responsible_person:'',
+    // asset_type:'',
+    // usage_location:'',
+    // delivery_location:'',
+    // usage_status:'',
+    // image_path:'',
+    // acquisition_date:''
+    main_asset_id:'',
+    sub_asset_name:'',
     quantity:'',
     unit:'',
-    fiscal_year:'',
-    budget_amount:'',
-    fund_type:'',
-    standard_price:'',
-    responsible_person:'',
-    asset_type:'',
-    usage_location:'',
-    delivery_location:'',
-    usage_status:'',
-    image_path:'',
-    acquisition_date:''
+    unit_price:'',
+    sub_asset_type:'',
+    sub_asset_description:'',
     
  
   });
@@ -40,24 +47,22 @@ function FormInsert2({ onSubmit }) {
         {//renderInput('รายการพัสดุหลัก', 'main_item_name')
         }
         
-        <div className="md:container md:mx-auto w-1/2 p-8 text-left">
+        {/* <div className="md:container md:mx-auto w-1/2 p-8 text-left">
           <button type="button" className="bg-gray-400 text-white px-4 py-2 rounded">ค้นหา</button>
         </div>
         <label>
         ชื่อ:
         <input type="text" name="main_item_name" value={formData.main_item_name} onChange={handleChange} />
-      </label>
-        {renderInput('รหัสทรัพย์สิน', 'asset_id')}
+        </label>
+         */}
+         
+        {renderInput('รายการพัสดุหลัก', 'main_asset_id')}
+        {renderInput('ชื่อรายการพัสดุย่อย', 'sub_asset_name')}
         {renderInput('จำนวน', 'quantity', 'number')}
         {renderInput('หน่วยนับ', 'unit')}
-        {renderTextArea('ประจำปีงบประมาณ', 'fiscal_year')}
-        {renderInput('วงเงินงบประมาณ', 'budget_amount')}
-        {renderInput('ประเภทเงิน', 'fund_type')}
-        {renderInput('ราคากลาง', 'standard_price', 'number')}
-        {renderInput('ประเภทพัสดุ', 'asset_type')}
-        {renderInput('สถานที่ใช้งาน', 'usage_location')}
-        {renderInput('วันที่ส่งมอบ', 'delivery_location')}
-        {renderInput('ผู้รับผิดชอบ', 'responsible_person')}
+        {renderTextArea('ราคาต่อหน่วย', 'unit_price')}
+        {renderInput('ประเภทพัสดุ', 'sub_asset_type')}
+        {renderInput('รายละเอียด', 'sub_asset_description')}
         
         {/* หากต้องการสามารถยกเลิกการใส่ภาพได้ */}
         {/* 
