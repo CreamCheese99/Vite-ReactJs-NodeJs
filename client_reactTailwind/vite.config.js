@@ -6,10 +6,12 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api/asset': 'http://localhost:5000'  // ตั้งค่า proxy ให้เส้นทาง /api ไปที่ localhost:4000
+      '/api/asset': 'http://localhost:5000',  // ตั้งค่า proxy ให้เส้นทาง /api ไปที่ localhost:8000
+      
     }
   }
 })
+
 
 // // vite.config.js
 

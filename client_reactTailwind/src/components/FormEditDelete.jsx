@@ -2,10 +2,10 @@ import React from 'react';
 import renderInput from './RenderInput';
 import renderTextArea from './RenderTextArea';
 
-function FormInsert({ onSubmit }) {
+function FormEditDelete({ onSubmit }) {
   return (
     <div className="md:container md:mx-auto w-1/2 p-8 text-left">
-      <h2 className="text-xl font-semibold text-pink-600 mb-4">เพิ่มข้อมูลพัสดุ</h2>
+      <h2 className="text-xl font-semibold text-pink-600 mb-4">แก้ไข/ลบข้อมูลพัสดุ</h2>
       <form onSubmit={onSubmit}>
         {renderInput('รายการพัสดุหลัก', 'main_item_name')}
         
@@ -25,7 +25,7 @@ function FormInsert({ onSubmit }) {
         {renderInput('วันที่ส่งมอบ', 'delivery_location')}
         {renderInput('ผู้รับผิดชอบ', 'responsible_person')}
         
-        {/* หากต้องการสามารถยกเลิกการใส่ภาพได้ */}
+     
         {/* 
         <div className="mb-4">
           <label className="block text-gray-700">ใส่ภาพ</label>
@@ -43,4 +43,4 @@ function FormInsert({ onSubmit }) {
   );
 }
 
-export default FormInsert;
+export default FormEditDelete;

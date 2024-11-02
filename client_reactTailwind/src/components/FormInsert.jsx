@@ -5,7 +5,7 @@ import renderTextArea from './RenderTextArea';
 function FormInsert({ onSubmit }) {
   return (
     <div className="md:container md:mx-auto w-1/2 p-8 text-left">
-      <h2 className="text-xl font-semibold text-pink-600 mb-4">เพิ่มข้อมูลพัสดุ</h2>
+      <h2 className="text-xl font-semibold text-pink-600 mb-4">เพิ่มข้อมูลพัสดุหลัก</h2>
       <form onSubmit={onSubmit}>
         {renderInput('รายการพัสดุหลัก', 'main_item_name')}
         
@@ -25,8 +25,7 @@ function FormInsert({ onSubmit }) {
         {renderInput('วันที่ส่งมอบ', 'delivery_location')}
         {renderInput('ผู้รับผิดชอบ', 'responsible_person')}
         
-        {/* หากต้องการสามารถยกเลิกการใส่ภาพได้ */}
-        {/* 
+        {/*         
         <div className="mb-4">
           <label className="block text-gray-700">ใส่ภาพ</label>
           <input type="file" className="border border-gray-300 p-2 rounded" />
@@ -34,7 +33,7 @@ function FormInsert({ onSubmit }) {
         */}
 
         <div className="container mx-auto flex justify-center items-center space-x-4">
-          {/* สามารถ uncomment หากต้องการปุ่มยกเลิก */}
+         
           {/* <button type="button" className="bg-gray-400 text-white px-4 py-2 rounded">ยกเลิก</button> */}
           <button type="submit" className="bg-yellow-400 text-white px-4 py-2 rounded">บันทึก</button>
         </div>

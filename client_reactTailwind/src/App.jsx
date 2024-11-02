@@ -1,8 +1,10 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import Login from './pages/Login';   // นำเข้า Login Page
-import Insert from './pages/Insert'; // นำเข้า Insert Page
+import Login from './pages/Login';
+import Insert from './pages/Insert';
+import SubInsert from './pages/SubInsert';
+import EditDelete from './pages/EditDelete';
 
 import Axios from 'axios';
 
@@ -18,8 +20,10 @@ const App = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<Login />} /> {/* แสดงหน้า Login เมื่อไปที่ '/' */}
-      <Route path="/insert" element={<Insert />} /> {/* แสดงหน้า Insert เมื่อไปที่ '/insert' */}
+    <Route path="/" element={<Login />} />
+    <Route path="/insert" element={<Insert />} />
+    <Route path="/subinsert" element={<SubInsert />} />
+    <Route path="/editdelete" element={<EditDelete />} />
     </Routes>
   );
 };

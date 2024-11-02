@@ -1,13 +1,13 @@
 import React from 'react';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
-import FormSubInsert from '../components/FromSubInsert';
+import FormSubInsert from '../components/FormSubInsert';
 
-function SubInsert({ onInsertData }) {
+function SubInsert({ onSubInsertData }) {
   const handleSubmit = (event) => {
     event.preventDefault();
+    
     const formData = {
-      // ข้อมูลที่ต้องการส่ง - ของเจ้าหน้าที่ภาควิชา
       main_asset_id: event.target.main_asset_id.value,
       sub_asset_name: event.target.sub_asset_name.value,
       quantity: event.target.quantity.value,
@@ -15,11 +15,15 @@ function SubInsert({ onInsertData }) {
       unit_price: event.target.unit_price.value,
       sub_asset_type: event.target.sub_asset_type.value,
       sub_asset_description: event.target.sub_asset_description.value,
-      
     };
-    console.log("data in formSubmit"+ formData);
+
+    console.log("Data in handleSubmit:", formData);
     
-    onInsertData(formData); // เรียกใช้ฟังก์ชันเพื่อส่งข้อมูลไปยังเซิร์ฟเวอร์
+    if (typeof onSubInsertData === "function") {
+      onSubInsertData(formData); // เรียกใช้ฟังก์ชันเพื่อส่งข้อมูลไปยังเซิร์ฟเวอร์
+    } else {
+      console.warn("onSubInsertData is not a function");
+    }
   };
 
   return (
