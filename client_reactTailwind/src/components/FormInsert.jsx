@@ -37,16 +37,10 @@ function FormInsert({ onSubmit }) {
     <div className="md:container md:mx-auto w-1/2 p-8 text-left">
       <h2 className="text-xl font-semibold text-pink-600 mb-4">เพิ่มข้อมูลพัสดุ</h2>
       <form onSubmit={onSubmit}>
-        {//renderInput('รายการพัสดุหลัก', 'main_item_name')
-        }
-        
+        {renderInput('รายการพัสดุหลัก', 'main_item_name')}
         <div className="md:container md:mx-auto w-1/2 p-8 text-left">
           <button type="button" className="bg-gray-400 text-white px-4 py-2 rounded">ค้นหา</button>
         </div>
-        <label>
-        ชื่อ:
-        <input type="text" name="main_item_name" value={formData.main_item_name} onChange={handleChange} />
-      </label>
         {renderInput('รหัสทรัพย์สิน', 'asset_id')}
         {renderInput('จำนวน', 'quantity', 'number')}
         {renderInput('หน่วยนับ', 'unit')}
