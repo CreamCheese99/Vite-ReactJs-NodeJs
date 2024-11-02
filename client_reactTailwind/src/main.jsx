@@ -49,6 +49,7 @@ import {
 
 import Login from './pages/Login.jsx';
 import Insert from './pages/Insert.jsx';
+import Insert2 from './pages/Insert2.jsx';
 
 // สร้าง router สำหรับจัดการเส้นทาง
 const router = createBrowserRouter([
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
   {
     path: "/Insert",  // เส้นทางไปยังหน้าการเพิ่มข้อมูล (Insert)
     element: <Insert />,  // ใช้ component Insert ที่จะแสดง
+  },
+  {
+    path: "/Insert2",  // เส้นทางไปยังหน้าการเพิ่มข้อมูล (Insert)
+    element: <Insert2 />,  // ใช้ component Insert ที่จะแสดง
   },
 ]);
 

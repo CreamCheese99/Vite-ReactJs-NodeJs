@@ -3,7 +3,7 @@ import React,{useState} from 'react';
 import renderInput from './RenderInput';
 import renderTextArea from './RenderTextArea';
 
-function FormInsert({ onSubmit }) {
+function FormInsert2({ onSubmit }) {
   
   const [formData,setFormData]=useState({
     main_item_name:'',
@@ -35,7 +35,7 @@ function FormInsert({ onSubmit }) {
 
   return (
     <div className="md:container md:mx-auto w-1/2 p-8 text-left">
-      <h2 className="text-xl font-semibold text-pink-600 mb-4">เพิ่มข้อมูลพัสดุ</h2>
+      <h2 className="text-xl font-semibold text-pink-600 mb-4">เพิ่มข้อมูลพัสดุ รายการย่อย</h2>
       <form onSubmit={onSubmit}>
         {//renderInput('รายการพัสดุหลัก', 'main_item_name')
         }
@@ -77,4 +77,4 @@ function FormInsert({ onSubmit }) {
   );
 }
 
-export default FormInsert;
+export default FormInsert2;
