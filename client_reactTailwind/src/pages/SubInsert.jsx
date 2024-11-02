@@ -16,7 +16,7 @@ function SubInsert({ onSubInsertData }) {
       sub_asset_type: event.target.sub_asset_type.value,
       sub_asset_description: event.target.sub_asset_description.value,
     };
-
+    
     console.log("Data in handleSubmit:", formData);
     
     if (typeof onSubInsertData === "function") {

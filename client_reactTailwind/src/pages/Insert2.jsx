@@ -1,28 +1,35 @@
 import React,{useState} from 'react';
 import axios from 'axios';
 import Sidebar from '../components/Sidebar';
-import FormInsert from '../components/FormInsert';
+import FormInsert2 from '../components/FormInsert2';
 import Header from '../components/Header';
 
 //function Insert({ onInsertData }) {
-const Insert=()=>{  
+const Insert2=()=>{  
 const [formData,setFormData]=useState({
-    main_item_name:'',
-    asset_id:'',
-    quantity:'',
-    unit:'',
-    fiscal_year:'',
-    budget_amount:'',
-    fund_type:'',
-    standard_price:'',
-    responsible_person:'',
-    asset_type:'',
-    usage_location:'',
-    delivery_location:'',
-    usage_status:'',
-    image_path:'',
-    acquisition_date:''
+    // main_item_name:'',
+    // asset_id:'',
+    // quantity:'',
+    // unit:'',
+    // fiscal_year:'',
+    // budget_amount:'',
+    // fund_type:'',
+    // standard_price:'',
+    // responsible_person:'',
+    // asset_type:'',
+    // usage_location:'',
+    // delivery_location:'',
+    // usage_status:'',
+    // image_path:'',
+    // acquisition_date:''
     
+      main_asset_id:'',
+      sub_asset_name:'',
+      quantity:'',
+      unit:'',
+      unit_price:'',
+      sub_asset_type:'',
+      sub_asset_description:'',
  
   });
   const handleSubmit = (event) => {
@@ -42,10 +49,10 @@ const [formData,setFormData]=useState({
       <Header />
       <div className="flex">
         <Sidebar />
-        <FormInsert onSubmit={handleSubmit} /> {/* ส่งฟังก์ชัน handleSubmit ไปที่ Form */}
+        <FormInsert2 onSubmit={handleSubmit} /> {/* ส่งฟังก์ชัน handleSubmit ไปที่ Form */}
       </div>
     </div>
   );
 }
 
-export default Insert;
+export default Insert2;

@@ -1,7 +1,7 @@
 import React from 'react';
 import SidebarLinkLogo from './SidebarLinkLogo';
 import SidebarLink from './SidebarLink';
-
+import { Link } from 'react-router-dom';
 function Sidebar() {
   return (
     <div className="w-1/4 bg-gray-200 p-4 text-left">
@@ -16,14 +16,14 @@ function Sidebar() {
 
         {/* หัวเรื่องเล็กภายใต้หัวเรื่องใหญ่ */}
         <div className="ml-4 space-y-2">
-          <SidebarLinkLogo nameLogo="เพิ่มข้อมูล" className="text-sm text-gray-600 hover:text-gray-800" />
+          <SidebarLinkLogo nameLogo="เพิ่มข้อมูล" className="text-sm text-gray-600 hover:text-gray-800" to="/Insert"/>
           <SidebarLinkLogo nameLogo="ลบ/แก้ไขข้อมูล" className="text-sm text-gray-600 hover:text-gray-800" />
         </div>
 
         {/* พัสดุย่อย */}
         <SidebarLink name="พัสดุย่อย" className="font-bold text-gray-800" />
         <div className="ml-4 space-y-2">
-          <SidebarLinkLogo nameLogo="เพิ่มข้อมูล" className="text-sm text-gray-600 hover:text-gray-800" />
+          <SidebarLinkLogo nameLogo="เพิ่มข้อมูล" className="text-sm text-gray-600 hover:text-gray-800" to ="/Insert2"/>
           <SidebarLinkLogo nameLogo="ลบ/แก้ไขข้อมูล" className="text-sm text-gray-600 hover:text-gray-800" />
         </div>
 
