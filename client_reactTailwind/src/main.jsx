@@ -1,41 +1,3 @@
-// import { StrictMode } from 'react'
-// import { createRoot } from 'react-dom/client'
-// import App from './App.jsx'
-// import './index.css'
-
-// createRoot(document.getElementById('root')).render(
-//   <StrictMode>
-//     <App />
-//   </StrictMode>,
-// )
-
-// import { StrictMode } from 'react'
-// import { createRoot } from 'react-dom/client'
-// // import App from './App.jsx'
-// import './index.css'
-// import {createBrowserRouter,RouterProvider,Route,Link,} from "react-router-dom"
-
-
-
-// import Login from './pages/Login.jsx'
-// import Insert from './pages/Insert.jsx'
-
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <Login />
-//   },
-//   {
-//     path: "Insert",
-//     element: <Insert />
-//   }
-// ])
-
-// createRoot(document.getElementById('root')).render(
-//   <StrictMode>
-//     <RouterProvider router={router} />
-//   </StrictMode>,
-// )
 
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -50,6 +12,8 @@ import {
 import Login from './pages/Login.jsx';
 import Insert from './pages/Insert.jsx';
 import Insert2 from './pages/Insert2.jsx';
+import EditDelete from './pages/EditDelete.jsx';
+import EditDelete2 from './pages/EditDelete2.jsx';
 
 // สร้าง router สำหรับจัดการเส้นทาง
 const router = createBrowserRouter([
@@ -65,6 +29,14 @@ const router = createBrowserRouter([
     path: "/Insert2",  // เส้นทางไปยังหน้าการเพิ่มข้อมูล (Insert)
     element: <Insert2 />,  // ใช้ component Insert ที่จะแสดง
   },
+  {
+    path: "/EditDelete",  // เส้นทางไปยังหน้าการเพิ่มข้อมูล (Insert)
+    element: <EditDelete />,  // ใช้ component Insert ที่จะแสดง
+  },
+  {
+    path: "/EditDelete2",  // เส้นทางไปยังหน้าการเพิ่มข้อมูล (Insert)
+    element: <EditDelete2 />,  // ใช้ component Insert ที่จะแสดง
+  }
 ]);
 
 // สร้าง root และ render app โดยใช้ RouterProvider

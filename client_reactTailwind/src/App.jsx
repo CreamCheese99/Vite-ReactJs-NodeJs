@@ -4,11 +4,11 @@ import Axios from 'axios';
 
 import Login from './pages/Login';
 import Insert from './pages/Insert';
-
 import Insert2 from './pages/Insert2';
-// import SubInsert from './pages/SubInsert';
-// import EditDelete from './pages/EditDelete';
+import EditDelete from './pages/EditDelete';
+import EditDelete2 from './pages/EditDelete2';
 
+// import SubInsert from './pages/SubInsert';
 
 const App = () => {
   const handleInsertData = async (data) => {
@@ -54,9 +54,8 @@ const App = () => {
       <Route path="/" element={<Login />} />
       <Route path="/insert" element={<Insert  />} />
       <Route path="/insert2" element={<Insert2  />} />
-
-      {/* <Route path="/subinsert" element={<SubInsert onSubInsertData={handleSubInsertData} />} />
-      <Route path="/editdelete" element={<EditDelete onEditData={handleEditData} onDeleteData={handleDeleteData} />} /> */}
+      <Route path="/editdelete" element={<EditDelete />} />
+      <Route path="/editdelete2" element={<EditDelete2 />} />
     </Routes>
   );
 };

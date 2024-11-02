@@ -5,7 +5,7 @@ import renderTextArea from './RenderTextArea';
 function FormEditDelete({ onSubmit, onDelete }) {
   return (
     <div className="md:container md:mx-auto w-1/2 p-8 text-left">
-      <h2 className="text-xl font-semibold text-pink-600 mb-4">แก้ไข/ลบข้อมูลพัสดุ</h2> 
+      <h2 className="text-xl font-semibold text-pink-600 mb-4">แก้ไข/ลบข้อมูลพัสดุหลัก</h2> 
       <form onSubmit={onSubmit}>
 
         {renderInput('รายการพัสดุหลัก', 'main_item_name')} 

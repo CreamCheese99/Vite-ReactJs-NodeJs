@@ -6,21 +6,6 @@ import renderTextArea from './RenderTextArea';
 function FormInsert2({ onSubmit }) {
   
   const [formData,setFormData]=useState({
-    // main_item_name:'',
-    // asset_id:'',
-    // quantity:'',
-    // unit:'',
-    // fiscal_year:'',
-    // budget_amount:'',
-    // fund_type:'',
-    // standard_price:'',
-    // responsible_person:'',
-    // asset_type:'',
-    // usage_location:'',
-    // delivery_location:'',
-    // usage_status:'',
-    // image_path:'',
-    // acquisition_date:''
     main_asset_id:'',
     sub_asset_name:'',
     quantity:'',
@@ -55,7 +40,7 @@ function FormInsert2({ onSubmit }) {
         <input type="text" name="main_item_name" value={formData.main_item_name} onChange={handleChange} />
         </label>
          */}
-         
+
         {renderInput('รายการพัสดุหลัก', 'main_asset_id')}
         {renderInput('ชื่อรายการพัสดุย่อย', 'sub_asset_name')}
         {renderInput('จำนวน', 'quantity', 'number')}

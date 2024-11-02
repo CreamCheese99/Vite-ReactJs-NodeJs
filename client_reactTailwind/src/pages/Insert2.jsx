@@ -7,21 +7,7 @@ import Header from '../components/Header';
 //function Insert({ onInsertData }) {
 const Insert2=()=>{  
 const [formData,setFormData]=useState({
-    // main_item_name:'',
-    // asset_id:'',
-    // quantity:'',
-    // unit:'',
-    // fiscal_year:'',
-    // budget_amount:'',
-    // fund_type:'',
-    // standard_price:'',
-    // responsible_person:'',
-    // asset_type:'',
-    // usage_location:'',
-    // delivery_location:'',
-    // usage_status:'',
-    // image_path:'',
-    // acquisition_date:''
+
     
       main_asset_id:'',
       sub_asset_name:'',
