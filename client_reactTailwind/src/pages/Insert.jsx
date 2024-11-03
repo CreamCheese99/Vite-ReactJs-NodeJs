@@ -35,7 +35,7 @@ const Insert = () => {
     event.preventDefault();
     console.log('Sending data:', formData); // แสดงข้อมูลที่ส่ง
     try {
-      const response = await axios.post('http://localhost:5000/api/assets', formData);
+      const response = await axios.post('/api/assets', formData);
       console.log('ข้อมูลถูกส่งสำเร็จ:', response.data);
       // แสดงข้อความแจ้งเตือนหรือทำการ redirect หลังส่งข้อมูลสำเร็จ
     } catch (error) {

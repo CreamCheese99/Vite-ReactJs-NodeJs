@@ -5,11 +5,11 @@ const cors = require('cors');
 const app = express();
 const port = 5000;
 
-// CORS options for allowing requests from frontend
-const corsOptions = {
-  origin: 'http://localhost:5173',
-  credentials: true,
-};
+// // CORS options for allowing requests from frontend
+// const corsOptions = {
+//   origin: 'http://localhost:5173',
+//   credentials: true,
+// };
 app.use(cors(corsOptions));
 app.use(express.json()); // Middleware to parse JSON bodies
 

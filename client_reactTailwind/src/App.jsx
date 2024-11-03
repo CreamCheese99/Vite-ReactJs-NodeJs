@@ -14,7 +14,7 @@ import AssetSummary from './pages/AssetSummary';
 const App = () => {
   const handleInsertData = async (data) => {
     try {
-      const response = await Axios.post('http://localhost:5000/api/assets', data);
+      const response = await Axios.post('/api/assets', data);
       console.log('Data inserted:', response.data);
     } catch (error) {
       console.error('Error inserting data:', error);
