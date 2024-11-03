@@ -10,6 +10,21 @@ const port = 5000;
 //   origin: 'http://localhost:5173',
 //   credentials: true,
 // };
+
+const whitelist = [
+  'http://localhost:5000'
+]
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+
+app.use(cors(corsOptions));
 app.use(cors(corsOptions));
 app.use(express.json()); // Middleware to parse JSON bodies
 
@@ -91,3 +106,4 @@ pool.connect()
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
+ 
