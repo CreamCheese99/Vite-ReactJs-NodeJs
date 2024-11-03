@@ -7,6 +7,7 @@ import Insert from './pages/Insert';
 import Insert2 from './pages/Insert2';
 import EditDelete from './pages/EditDelete';
 import EditDelete2 from './pages/EditDelete2';
+import AssetSummary from './pages/AssetSummary';
 
 // import SubInsert from './pages/SubInsert';
 
@@ -56,6 +57,8 @@ const App = () => {
       <Route path="/insert2" element={<Insert2  />} />
       <Route path="/editdelete" element={<EditDelete />} />
       <Route path="/editdelete2" element={<EditDelete2 />} />
+      <Route path="/assetsummary" element={<AssetSummary/>} />
+      
     </Routes>
   );
 };

@@ -14,6 +14,7 @@ import Insert from './pages/Insert.jsx';
 import Insert2 from './pages/Insert2.jsx';
 import EditDelete from './pages/EditDelete.jsx';
 import EditDelete2 from './pages/EditDelete2.jsx';
+import AssetSummary from './pages/AssetSummary.jsx';
 
 // สร้าง router สำหรับจัดการเส้นทาง
 const router = createBrowserRouter([
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
   {
     path: "/EditDelete2",  // เส้นทางไปยังหน้าการเพิ่มข้อมูล (Insert)
     element: <EditDelete2 />,  // ใช้ component Insert ที่จะแสดง
+  },
+  {
+    path: "/AssetSummary",  // เส้นทางไปยังหน้าการเพิ่มข้อมูล (Insert)
+    element: <AssetSummary />,  // ใช้ component Insert ที่จะแสดง
   }
 ]);
 

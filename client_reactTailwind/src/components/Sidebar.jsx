@@ -30,7 +30,7 @@ function Sidebar() {
         {/* รายการพัสดุ */}
         <SidebarLink name="รายการพัสดุ" className="font-bold text-gray-800" />
         <div className="ml-4 space-y-2">
-          <SidebarLinkLogo nameLogo="สรุปข้อมูลพัสดุ" className="text-sm text-gray-600 hover:text-gray-800" />
+          <SidebarLinkLogo nameLogo="สรุปข้อมูลพัสดุ" className="text-sm text-gray-600 hover:text-gray-800" to="/AssetSummary" />
         </div>
       </ul>
     </div>
