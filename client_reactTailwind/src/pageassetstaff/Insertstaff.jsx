@@ -1,26 +1,19 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Sidebar from '../components/Sidebar';
-import FormInsert from '../components/FormInsert';
-import Header from '../components/Header';
+import Sidebar from '../componentstaff/Sidebar';
+import FormInsert from '../componentstaff/FormInsert';
+import Header from '../componentstaff/Header';
 
-const Insert = () => {
+const Insertstaff = () => {
   const [formData, setFormData] = useState({
+    department: '',
     main_item_name: '',
-    asset_id: '',
+    fiscal_year: '',
     quantity: '',
     unit: '',
-    fiscal_year: '',
-    budget_amount: '',
-    fund_type: '',
-    standard_price: '',
-    responsible_person: '',
-    asset_type: '',
-    usage_location: '',
-    delivery_location: '',
-    usage_status: '',
     image_path: '',
-    acquisition_date: ''
+    delivery_location: '',
+    usage_status: ''
   });
 
   const handleChange = (e) => {
@@ -35,7 +28,7 @@ const Insert = () => {
     event.preventDefault();
     console.log('Sending data:', formData); // แสดงข้อมูลที่ส่ง
     try {
-      const response = await axios.post('/api/assets', formData);
+      const response = await axios.post('/api/assetstaff', formData);
       console.log('ข้อมูลถูกส่งสำเร็จ:', response.data);
       // แสดงข้อความแจ้งเตือนหรือทำการ redirect หลังส่งข้อมูลสำเร็จ
     } catch (error) {
@@ -55,4 +48,4 @@ const Insert = () => {
   );
 }
 
-export default Insert;
+export default Insertstaff;

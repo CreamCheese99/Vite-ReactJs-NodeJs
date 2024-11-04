@@ -8,13 +8,13 @@ import Insert2 from './pages/Insert2';
 import EditDelete from './pages/EditDelete';
 import EditDelete2 from './pages/EditDelete2';
 import AssetSummary from './pages/AssetSummary';
-
+import Insertstaff from './pageassetstaff/Insertstaff';
 // import SubInsert from './pages/SubInsert';
 
 const App = () => {
   const handleInsertData = async (data) => {
     try {
-      const response = await Axios.post('/api/assets', data);
+      const response = await Axios.post('/api/assetstaff', data);
       console.log('Data inserted:', response.data);
     } catch (error) {
       console.error('Error inserting data:', error);
@@ -58,7 +58,7 @@ const App = () => {
       <Route path="/editdelete" element={<EditDelete />} />
       <Route path="/editdelete2" element={<EditDelete2 />} />
       <Route path="/assetsummary" element={<AssetSummary/>} />
-      
+      <Route path="/insertstaff" element={<Insertstaff/>} />
     </Routes>
   );
 };
