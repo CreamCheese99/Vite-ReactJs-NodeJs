@@ -9,7 +9,7 @@ function FormInsert({ formData, onChange, onSubmit }) {
   };
 
   return (
-    <div className="md:container md:mx-auto w-1/2 p-8 text-left">
+    <div className="md:container md:mx-auto w-1/4 p-10 text-left">
       <h2 className="text-xl font-semibold text-pink-600 mb-4">เพิ่มข้อมูลพัสดุ</h2>
       <form onSubmit={handleSubmit}>
         {renderInput('รายการพัสดุหลัก', 'main_item_name', 'text', onChange)}
