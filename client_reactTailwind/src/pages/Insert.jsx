@@ -18,9 +18,6 @@ const Insert = () => {
     asset_type: '',
     usage_location: '',
     delivery_location: '',
-    usage_status: '',
-    image_path: '',
-    acquisition_date: '',
   });
 
   const handleChange = (e) => {
@@ -46,6 +43,8 @@ const Insert = () => {
       console.error('Event is undefined'); // Log if event is not defined
     }
   };
+
+  
 
   return (
     <div className="bg-gray-50 text-gray-600">

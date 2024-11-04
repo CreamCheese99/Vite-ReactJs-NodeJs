@@ -19,7 +19,7 @@ function FormInsert({ formData, onChange, onSubmit }) {
         {renderInput('รหัสทรัพย์สิน', 'asset_id', 'text', onChange)}
         {renderInput('จำนวน', 'quantity', 'number', onChange)}
         {renderInput('หน่วยนับ', 'unit', 'text', onChange)}
-        {renderTextArea('ประจำปีงบประมาณ', 'fiscal_year', onChange)}
+        {renderInput('ประจำปีงบประมาณ', 'fiscal_year','text', onChange)}
         {renderInput('วงเงินงบประมาณ', 'budget_amount', 'text', onChange)}
         {renderInput('ประเภทเงิน', 'fund_type', 'text', onChange)}
         {renderInput('ราคากลาง', 'standard_price', 'number', onChange)}

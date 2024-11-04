@@ -44,8 +44,8 @@ const insertAsset = async (data) => {
     const result = await pool.query(
       `INSERT INTO assets (main_item_name, asset_id, quantity, unit, fiscal_year, budget_amount,
       fund_type, standard_price, responsible_person, asset_type, usage_location,
-      delivery_location, usage_status, image_path, acquisition_date) 
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING *`,
+      delivery_location) 
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, ) RETURNING *`,
       [
         data.main_item_name,
         data.asset_id,
@@ -59,9 +59,6 @@ const insertAsset = async (data) => {
         data.asset_type || null,
         data.usage_location || null,
         data.delivery_location || null,
-        data.usage_status || null,
-        data.image_path || null,
-        data.acquisition_date || null,
       ]
     );
     return result.rows[0];
