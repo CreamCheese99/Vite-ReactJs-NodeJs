@@ -10,10 +10,10 @@ function FormInsert({ formData, onChange, onSubmit }) {
 
   return (
     <div className="md:container md:mx-auto w-1/4 p-10 text-left">
-      <h2 className="text-xl font-semibold text-pink-600 mb-4">เพิ่มข้อมูลพัสดุ</h2>
+      <h2 className="text-xl font-semibold font-prompt text-pink-600 mb-4">เพิ่มข้อมูลพัสดุ</h2>
       <form onSubmit={handleSubmit}>
         {renderInput('รายการพัสดุหลัก', 'main_item_name', 'text', onChange)}
-        <button type="button" className="bg-gray-400 text-white px-4 py-2 rounded">
+        <button type="button" className="bg-gray-400 text-white px-4 py-2 font-prompt rounded">
           ค้นหา
         </button>
         {renderInput('รหัสทรัพย์สิน', 'asset_id', 'text', onChange)}
@@ -29,7 +29,7 @@ function FormInsert({ formData, onChange, onSubmit }) {
         {renderInput('ผู้รับผิดชอบ', 'responsible_person', 'text', onChange)}
 
         <div className="container mx-auto flex justify-center items-center space-x-4">
-          <button type="submit" className="bg-yellow-400 text-white px-4 py-2 rounded">
+          <button type="submit" className="bg-yellow-400 text-white font-prompt px-4 py-2 rounded">
             บันทึก
           </button>
         </div>

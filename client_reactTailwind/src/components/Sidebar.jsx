@@ -5,7 +5,7 @@ import SidebarLink from './SidebarLink';
 import { Link } from 'react-router-dom';
 function Sidebar() {
   return (
-    <div className="w-1/4 bg-gray-200 p-4 text-left">
+    <div className="w-1/4 bg-gray-200 p-4 font-prompt text-left">
       <div className="mb-8">
         <h1 className="text-pink-600 font-semibold text-xl">ระบบจัดการครุภัณฑ์</h1>
         <p className="text-gray-600">คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</p>

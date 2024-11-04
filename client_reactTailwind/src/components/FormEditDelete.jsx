@@ -5,13 +5,13 @@ import renderTextArea from './RenderTextArea';
 function FormEditDelete({ onSubmit, onDelete }) {
   return (
     <div className="md:container md:mx-auto w-1/2 p-8 text-left">
-      <h2 className="text-xl font-semibold text-pink-600 mb-4">แก้ไข/ลบข้อมูลพัสดุหลัก</h2> 
+      <h2 className="font-prompt text-xl font-semibold text-pink-600 mb-4">แก้ไข/ลบข้อมูลพัสดุหลัก</h2> 
       <form onSubmit={onSubmit}>
 
         {renderInput('รายการพัสดุหลัก', 'main_item_name')} 
       
         <div className="md:container md:mx-auto w-1/2 p-8 text-left">
-          <button type="button" className="bg-gray-400 text-white px-4 py-2 rounded">ค้นหา</button> 
+          <button type="button" className="font-prompt bg-gray-400 text-white px-4 py-2 rounded">ค้นหา</button> 
         </div>
         
         {renderInput('รหัสทรัพย์สิน', 'asset_id')} 
@@ -28,12 +28,12 @@ function FormEditDelete({ onSubmit, onDelete }) {
 
         <div className="container mx-auto flex justify-center items-center space-x-4">
           {/* <button type="button" className="bg-gray-400 text-white px-4 py-2 rounded">ยกเลิก</button> */}
-          <button type="submit" className="bg-yellow-400 text-white px-4 py-2 rounded">บันทึก</button> {/* ปุ่มบันทึก */}
+          <button type="submit" className="font-prompt bg-yellow-400 text-white px-4 py-2 rounded">บันทึก</button> {/* ปุ่มบันทึก */}
         </div>
       </form>
       
       <div className="container mx-auto flex justify-center items-center space-x-4 mt-4">
-        <button onClick={onDelete} className="bg-red-400 text-white px-4 py-2 rounded">ลบข้อมูล</button> {/* ปุ่มลบข้อมูล */}
+        <button onClick={onDelete} className=" font-prompt bg-red-400 text-white px-4 py-2 rounded">ลบข้อมูล</button> {/* ปุ่มลบข้อมูล */}
       </div>
     </div>
   );
