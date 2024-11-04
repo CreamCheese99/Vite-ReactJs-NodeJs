@@ -23,6 +23,7 @@ const Insert = () => {
     acquisition_date: ''
   });
 
+  // Handle input change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
@@ -31,16 +32,41 @@ const Insert = () => {
     }));
   };
 
+  // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Sending data:', formData); // แสดงข้อมูลที่ส่ง
+
+    // Validate required fields
+    if (!formData.main_item_name || !formData.asset_id) {
+      console.error('Main item name and asset ID are required.');
+      return; // Early return if validation fails
+    }
+
+    console.log('Sending data:', formData);
     try {
-      const response = await axios.post('/api/assets', formData);
+      const response = await axios.post('http://localhost:5000/api/assets', formData);
       console.log('ข้อมูลถูกส่งสำเร็จ:', response.data);
-      // แสดงข้อความแจ้งเตือนหรือทำการ redirect หลังส่งข้อมูลสำเร็จ
+      // Reset form after successful submission (optional)
+      setFormData({
+        main_item_name: '',
+        asset_id: '',
+        quantity: '',
+        unit: '',
+        fiscal_year: '',
+        budget_amount: '',
+        fund_type: '',
+        standard_price: '',
+        responsible_person: '',
+        asset_type: '',
+        usage_location: '',
+        delivery_location: '',
+        usage_status: '',
+        image_path: '',
+        acquisition_date: ''
+      });
     } catch (error) {
-      console.error('เกิดข้อผิดพลาดในการส่งข้อมูล:', error);
-      // แสดงข้อความแจ้งเตือนเมื่อเกิดข้อผิดพลาด
+      console.error('เกิดข้อผิดพลาดในการส่งข้อมูล:', error.response?.data || error.message);
+      // Optionally, you could show a user-friendly message here
     }
   };
 
@@ -54,5 +80,5 @@ const Insert = () => {
     </div>
   );
 }
-
 export default Insert;
+
