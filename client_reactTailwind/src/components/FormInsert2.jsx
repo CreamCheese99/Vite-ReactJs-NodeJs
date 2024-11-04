@@ -26,7 +26,7 @@ function FormInsert2({ onSubmit }) {
 
 
   return (
-    <div className="font-prompt md:container md:mx-auto w-1/2 p-8 text-left">
+    <div className="text-sm font-prompt md:container text-sm  md:mx-auto w-1/2 p-8 text-left">
       <h2 className="text-xl font-semibold text-pink-600 mb-4">เพิ่มข้อมูลพัสดุ รายการย่อย</h2>
       <form onSubmit={onSubmit}>
         {//renderInput('รายการพัสดุหลัก', 'main_item_name')

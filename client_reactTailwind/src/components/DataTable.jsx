@@ -8,15 +8,15 @@ function DataTable() {
       <table className="border-collapse table-auto w-full border border-gray-300 rounded-lg text-center bg-white">
         <thead className="bg-gray-100 rounded-t-lg">
           <tr>
-            <th className="p-3 border border-gray-300 text-gray-700">ลำดับ</th>
-            <th className="p-3 border border-gray-300 text-gray-700">รหัสพัสดุย่อย</th>
-            <th className="p-3 border border-gray-300 text-gray-700">พัสดุหลัก</th>
-            <th className="p-3 border border-gray-300 text-gray-700">จำนวนพัสดุย่อย</th>
-            <th className="p-3 border border-gray-300 text-gray-700">สถานที่ใช้งาน</th>
-            <th className="p-3 border border-gray-300 text-gray-700">สภาพใช้งาน</th>
-            <th className="p-3 border border-gray-300 text-gray-700">ราคา/หน่วย</th>
-            <th className="p-3 border border-gray-300 text-gray-700">อายุการใช้งาน</th>
-            <th className="p-3 border border-gray-300 text-gray-700">สาเหตุเลิกใช้งาน</th>
+            <th className="p-3 border text-base border-gray-300 text-gray-700">ลำดับ</th>
+            <th className="p-3 border text-base border-gray-300 text-gray-700">รหัสพัสดุย่อย</th>
+            <th className="p-3 border text-base border-gray-300 text-gray-700">พัสดุหลัก</th>
+            <th className="p-3 border text-base border-gray-300 text-gray-700">จำนวนพัสดุย่อย</th>
+            <th className="p-3 border text-base border-gray-300 text-gray-700">สถานที่ใช้งาน</th>
+            <th className="p-3 border text-base border-gray-300 text-gray-700">สภาพใช้งาน</th>
+            <th className="p-3 border text-base border-gray-300 text-gray-700">ราคา/หน่วย</th>
+            <th className="p-3 border text-base border-gray-300 text-gray-700">อายุการใช้งาน</th>
+            <th className="p-3 border text-base border-gray-300 text-gray-700">สาเหตุเลิกใช้งาน</th>
           </tr>
         </thead>
         <tbody>

@@ -2,9 +2,9 @@ import React from 'react';
 
 function Header() {
   return (
-    <div className='font-prompt flex items-center justify-between bg-gray-100 p-4'>
+    <div className='font-prompt flex items-center justify-between bg-gray-100 p-1/2'>
       <div className="flex items-center m-2">
-        <img src="src/image/logo.svg" alt="logo" className='h-9 w-auto mr-2' />
+        <img src="src/image/logo.svg" alt="logo" className='h-9 w-auto mr-4' />
         <div className="flex-1 items-center m-2">
           <span className="text-pink-600 text-lg font-bold block">ระบบจัดการครุภัณฑ์</span>
           <p className="text-gray-600 text-xs">คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</p>

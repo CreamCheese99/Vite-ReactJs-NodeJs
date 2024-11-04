@@ -10,7 +10,7 @@ function Sidebar() {
   return (
     <div className="font-prompt w-1/4 bg-gray-200 p-4 text-left">
       <div className="mb-8">
-        <h1 className="text-pink-600 font-semibold text-xl">ระบบจัดการครุภัณฑ์</h1>
+        <h1 className="text-pink-600 font-semibold text-lg">ระบบจัดการครุภัณฑ์</h1>
         <p className="text-gray-600 text-sm">คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</p>
         <p className="text-gray-600 text-sm">สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง</p>
       </div>
