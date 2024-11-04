@@ -3,7 +3,7 @@ import TableRow from './TableRow';
 
 function DataTable() {
   return (
-    <div className="md:container md:mx-auto w-1/2 p-8 text-left">
+    <div className="font-prompt md:container md:mx-auto w-1/2 p-8 text-left">
       <h2 className="text-lg font-semibold mb-4 text-gray-700">ข้อมูลพัสดุย่อย</h2>
       <table className="border-collapse table-auto w-full border border-gray-300 rounded-lg text-center bg-white">
         <thead className="bg-gray-100 rounded-t-lg">

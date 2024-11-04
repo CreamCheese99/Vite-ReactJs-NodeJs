@@ -5,7 +5,7 @@ function SidebarLink({ name }) {
       <li>
         <a
           href="#"
-          className="block p-2 font-semibold hover:text-pink-600 hover:bg-gray-300"
+          className="font-prompt block p-2 font-semibold hover:text-pink-600 hover:bg-gray-300"
         >
           {name}
         </a>

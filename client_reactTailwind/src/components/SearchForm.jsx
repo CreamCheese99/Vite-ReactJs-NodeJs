@@ -3,12 +3,12 @@ import React from 'react';
 function SearchForm() {
   return (
     
-    <div className="md:container md:mx-auto w-1/2 p-8 text-left ">
-      <h2 className="text-xl font-semibold text-pink-600 mb-4">สรุปข้อมูลพัสดุ</h2> 
+    <div className="font-prompt md:container md:mx-auto w-1/2 p-8 text-left ">
+      <h2 className="font-prompt text-xl font-semibold text-pink-600 mb-4">สรุปข้อมูลพัสดุ</h2> 
 
-      <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+      <div className="font-prompt flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
         <div className="flex flex-col w-full md:w-1/2">
-          <label className="text-gray-700 text-sm font-semibold mb-1">ภาควิชา</label>
+          <label className="font-prompt text-gray-700 text-sm font-semibold mb-1">ภาควิชา</label>
           <input
             type="text"
             placeholder="ภาควิชา"
