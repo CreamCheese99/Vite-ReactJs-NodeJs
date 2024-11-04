@@ -5,28 +5,27 @@ const cors = require('cors');
 const app = express();
 const port = 5000;
 
-// // CORS options for allowing requests from frontend
-// const corsOptions = {
-//   origin: 'http://localhost:5173',
-//   credentials: true,
-// };
-
+// Whitelist ของต้นทางที่ได้รับอนุญาต
 const whitelist = [
-  'http://localhost:5000'
-]
+  'http://localhost:5173', // ต้นทางของ frontend
+  'http://localhost:5000'  // ต้นทางของ backend
+];
+
 const corsOptions = {
   origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
+    if (!origin || whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'))
+      callback(new Error('Not allowed by CORS'));
     }
-  }
-}
-app.use(cors(corsOptions));
-app.use(express.json()); // Middleware to parse JSON bodies
+  },
+  credentials: true, // อนุญาต cookies และข้อมูล credentials ระหว่าง frontend และ backend
+};
 
-// Configure PostgreSQL connection
+app.use(cors(corsOptions));
+app.use(express.json()); // Middleware สำหรับ parse JSON
+
+// การตั้งค่าเชื่อมต่อ PostgreSQL
 const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
@@ -35,7 +34,7 @@ const pool = new Pool({
   port: 5432,
 });
 
-// Function to insert asset into the database
+// ฟังก์ชันเพิ่มข้อมูลทรัพย์สินลงในฐานข้อมูล
 const insertAsset = async (data) => {
   if (!data.main_item_name || !data.asset_id) {
     throw new Error("Main item name and asset ID are required.");
@@ -68,11 +67,11 @@ const insertAsset = async (data) => {
     return result.rows[0];
   } catch (error) {
     console.error("Database insertion error:", error.message);
-    throw error; // Rethrow error for higher level handling
+    throw error; // ส่งต่อ error เพื่อให้จัดการระดับสูงได้
   }
 };
 
-// API endpoint for inserting asset data
+// API endpoint สำหรับเพิ่มข้อมูลทรัพย์สิน
 app.post('/api/assets', async (req, res) => {
   const { main_item_name, asset_id } = req.body;
 
@@ -83,7 +82,7 @@ app.post('/api/assets', async (req, res) => {
   }
 
   // แสดงข้อมูลที่ได้รับใน console
-  console.log('Received data:', req.body); // แสดงข้อมูลที่ได้รับ
+  console.log('Received data:', req.body);
  
   try {
     const insertedAsset = await insertAsset(req.body);
@@ -94,14 +93,12 @@ app.post('/api/assets', async (req, res) => {
   }
 });
 
-
-// Connect to PostgreSQL database
+// เชื่อมต่อกับ PostgreSQL
 pool.connect()
   .then(() => console.log("Connected to PostgreSQL"))
   .catch((error) => console.error("PostgreSQL connection error:", error.message));
 
-// Start server
+// เริ่มต้นเซิร์ฟเวอร์
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
- 
