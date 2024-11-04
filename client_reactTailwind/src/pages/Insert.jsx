@@ -1,32 +1,73 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import Sidebar from '../components/Sidebar';
 import FormInsert from '../components/FormInsert';
 import Header from '../components/Header';
 
-function Insert({ onInsertData }) {
-  const handleSubmit = (event) => {
+const Insert = () => {
+  const [formData, setFormData] = useState({
+    main_item_name: '',
+    asset_id: '',
+    quantity: '',
+    unit: '',
+    fiscal_year: '',
+    budget_amount: '',
+    fund_type: '',
+    standard_price: '',
+    responsible_person: '',
+    asset_type: '',
+    usage_location: '',
+    delivery_location: '',
+    usage_status: '',
+    image_path: '',
+    acquisition_date: ''
+  });
+
+  // Handle input change
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  // Handle form submission
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const formData = {
-      // ข้อมูลที่ต้องการส่ง - ของเจ้าหน้าที่ภาควิชา
-      main_item_name: event.target.main_item_name.value,
-      asset_id: event.target.asset_id.value,
-      quantity: event.target.quantity.value,
-      unit: event.target.unit.value,
-      fiscal_year: event.target.fiscal_year.value,
-      budget_amount: event.target.budget_amount.value,
-      fund_type: event.target.fund_type.value,
-      standard_price: event.target.standard_price.value, // แก้ไขจาก 'sandard_price' เป็น 'standard_price'
-      responsible_person: event.target.responsible_person.value,
-      asset_type: event.target.asset_type.value,
-      usage_location: event.target.usage_location.value,
-      delivery_location: event.target.delivery_location.value,
-      usage_status: event.target.usage_status.value,
-      image_path: event.target.image_path.value,
-      acquisition_date: event.target.acquisition_date.value,
-    };
-    console.log("data in formSubmit"+ formData);
-    
-    onInsertData(formData); // เรียกใช้ฟังก์ชันเพื่อส่งข้อมูลไปยังเซิร์ฟเวอร์
+
+    // Validate required fields
+    if (!formData.main_item_name || !formData.asset_id) {
+      console.error('Main item name and asset ID are required.');
+      return; // Early return if validation fails
+    }
+
+    console.log('Sending data:', formData);
+    try {
+      const response = await axios.post('http://localhost:5000/api/assets', formData);
+      console.log('ข้อมูลถูกส่งสำเร็จ:', response.data);
+      // Reset form after successful submission (optional)
+      setFormData({
+        main_item_name: '',
+        asset_id: '',
+        quantity: '',
+        unit: '',
+        fiscal_year: '',
+        budget_amount: '',
+        fund_type: '',
+        standard_price: '',
+        responsible_person: '',
+        asset_type: '',
+        usage_location: '',
+        delivery_location: '',
+        usage_status: '',
+        image_path: '',
+        acquisition_date: ''
+      });
+    } catch (error) {
+      console.error('เกิดข้อผิดพลาดในการส่งข้อมูล:', error.response?.data || error.message);
+      // Optionally, you could show a user-friendly message here
+    }
   };
 
   return (
@@ -34,10 +75,10 @@ function Insert({ onInsertData }) {
       <Header />
       <div className="flex">
         <Sidebar />
-        <FormInsert onSubmit={handleSubmit} /> {/* ส่งฟังก์ชัน handleSubmit ไปที่ Form */}
+        <FormInsert formData={formData} onChange={handleChange} onSubmit={handleSubmit} />
       </div>
     </div>
   );
 }
-
 export default Insert;
+

@@ -2,25 +2,17 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
-import FormEditDelete from '../components/FormEditDelete';
+import FormEditDelete2 from '../components/FormEditDelete2';
 
-const EditDelete = () => {
+const EditDelete2 = () => {
   const [formData, setFormData] = useState({
-    main_item_name: '',
-    asset_id: '',
-    quantity: '',
-    unit: '',
-    fiscal_year: '',
-    budget_amount: '',
-    fund_type: '',
-    standard_price: '',
-    responsible_person: '',
-    asset_type: '',
-    usage_location: '',
-    delivery_location: '',
-    usage_status: '',
-    image_path: '',
-    acquisition_date: '',
+    main_asset_id:'',
+    sub_asset_name:'',
+    quantity:'',
+    unit:'',
+    unit_price:'',
+    sub_asset_type:'',
+    sub_asset_description:'',
   });
 
   const handleEdit = (event) => {
@@ -60,7 +52,7 @@ const EditDelete = () => {
       <Header />
       <div className="flex">
         <Sidebar />
-        <FormEditDelete
+        <FormEditDelete2
           onSubmit={handleEdit} 
           onDelete={handleDelete}
           formData={formData} 
@@ -71,6 +63,4 @@ const EditDelete = () => {
   );
 }
 
-export default EditDelete;
-
-
+export default EditDelete2;
