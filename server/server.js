@@ -75,6 +75,10 @@ const insertAsset = async (data) => {
 app.post('/api/assets', async (req, res) => {
   const { main_item_name, asset_id } = req.body;
 
+
+
+
+console.log('Test = '+ req.body);
   // ตรวจสอบข้อมูลที่ได้รับ
   if (!main_item_name || !asset_id) {
     console.log('Validation error: Main item name and asset ID are required.');
