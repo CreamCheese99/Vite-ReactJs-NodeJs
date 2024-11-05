@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import Sidebar from '../components/Sidebar';
-import FormEditDelete from '../components/FormEditDelete';
 import Header from '../components/Header';
+import FormEditDelete from '../components/FormEditDelete';
 
 const EditDelete = () => {
   const [formData, setFormData] = useState({
@@ -17,72 +17,58 @@ const EditDelete = () => {
     responsible_person: '',
     asset_type: '',
     usage_location: '',
-    delivery_location: '',
+    delivery_location: ''
   });
-  const [isEditMode, setIsEditMode] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [responseMessage, setResponseMessage] = useState('');
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-    console.log(formData);
-  };
-
-  const handleSubmit = async (event) => {
+  const handleEdit = (event) => {
     event.preventDefault();
-    console.log('Submitting data:', formData);
-    setLoading(true); // เริ่มโหลด
 
-    try {
-      if (isEditMode) {
-        const response = await axios.put(`http://localhost:5000/api/assets/${formData.id}`, formData);
-        console.log('Data updated successfully:', response.data);
-        setResponseMessage('ข้อมูลถูกอัปเดตเรียบร้อย');
-      } else {
-        const response = await axios.post('http://localhost:5000/api/assets', formData);
-        console.log('Data submitted successfully:', response.data);
-        setResponseMessage('ข้อมูลถูกบันทึกเรียบร้อย');
-      }
-    } catch (error) {
-      console.error('Error submitting data:', error);
-      setResponseMessage('เกิดข้อผิดพลาดในการส่งข้อมูล');
-    } finally {
-      setLoading(false); // สิ้นสุดโหลด
-    }
+    // Send the updated data to the API for editing
+    axios.put(`http://localhost:5000/api/assets/${formData.asset_id}`, formData)
+      .then(response => {
+        console.log('Data successfully updated:', response.data);
+        // Optionally, show a success message or redirect
+        alert('Data updated successfully!');
+      })
+      .catch(error => {
+        console.error('Error updating data:', error);
+        // Optionally, show an error message
+        alert('Failed to update data.');
+      });
   };
 
-  const handleDelete = async (id) => {
-    if (window.confirm("คุณแน่ใจว่าต้องการลบข้อมูลนี้?")) {
-      try {
-        setLoading(true); // เริ่มโหลด
-        const response = await axios.delete(`http://localhost:5000/api/assets/${id}`);
-        console.log('Data deleted successfully:', response.data);
-        setResponseMessage('ข้อมูลถูกลบเรียบร้อย');
-        setFormData({
-          main_item_name: '',
-          asset_id: '',
-          quantity: '',
-          unit: '',
-          fiscal_year: '',
-          budget_amount: '',
-          fund_type: '',
-          standard_price: '',
-          responsible_person: '',
-          asset_type: '',
-          usage_location: '',
-          delivery_location: '',
+  const handleDelete = () => {
+    const assetId = prompt("Enter the Asset ID to delete:"); // Prompt for Asset ID
+    if (assetId) {
+      axios.delete(`http://localhost:5000/api/assets/${assetId}`)
+        .then(response => {
+          console.log('Data successfully deleted:', response.data);
+          // Optionally, show a success message or redirect
+          alert('Data deleted successfully!');
+          // Clear form data if necessary
+          setFormData({
+            main_item_name: '',
+            asset_id: '',
+            quantity: '',
+            unit: '',
+            fiscal_year: '',
+            budget_amount: '',
+            fund_type: '',
+            standard_price: '',
+            responsible_person: '',
+            asset_type: '',
+            usage_location: '',
+            delivery_location: ''
+          });
+        })
+        .catch(error => {
+          console.error('Error deleting data:', error);
+          // Optionally, show an error message
+          alert('Failed to delete data.');
         });
-        setIsEditMode(false);
-      } catch (error) {
-        console.error('Error deleting data:', error);
-        setResponseMessage('เกิดข้อผิดพลาดในการลบข้อมูล');
-      } finally {
-        setLoading(false); // สิ้นสุดโหลด
-      }
+    } else {
+      console.warn("No Asset ID provided");
+      alert("Please provide a valid Asset ID.");
     }
   };
 
@@ -92,17 +78,12 @@ const EditDelete = () => {
       <div className="flex">
         <Sidebar />
         <FormEditDelete
-          formData={formData}
-          onChange={handleChange}
-          onSubmit={handleSubmit}
+          onSubmit={handleEdit} 
           onDelete={handleDelete}
-          isEditMode={isEditMode}
-          loading={loading}
-          responseMessage={responseMessage} // ส่งข้อความตอบสนอง
-        />
+          formData={formData} 
+          setFormData={setFormData} // Pass setFormData to the form
+        /> 
       </div>
-      {loading && <p className="text-center">กำลังโหลด...</p>}
-      {responseMessage && <p className="text-center">{responseMessage}</p>}
     </div>
   );
 }

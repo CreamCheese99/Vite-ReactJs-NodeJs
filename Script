@@ -1,20 +1,28 @@
-Database Name : Inventory
+-- Table: public.assets
 
-CREATE TABLE assets (
-    id SERIAL PRIMARY KEY,
-    main_item_name VARCHAR(255) NOT NULL,
-    asset_id VARCHAR(100) NOT NULL UNIQUE,
-    quantity INT NOT NULL,
-    unit VARCHAR(50) NOT NULL,
-    fiscal_year VARCHAR(10) NOT NULL,
-    budget_amount DECIMAL(10, 2) NOT NULL,
-    fund_type VARCHAR(50) NOT NULL,
-    standard_price DECIMAL(10, 2) NOT NULL,
-    responsible_person VARCHAR(255) NOT NULL,
-    asset_type VARCHAR(100) NOT NULL,
-    usage_location VARCHAR(255) NOT NULL,
-    delivery_location VARCHAR(255) NOT NULL,
-    usage_status VARCHAR(50) NOT NULL,
-    image_path VARCHAR(255) NOT NULL,
-    acquisition_date DATE NOT NULL
-);
+-- DROP TABLE IF EXISTS public.assets;
+
+CREATE TABLE IF NOT EXISTS public.assets
+(
+    id integer NOT NULL DEFAULT nextval('assets_id_seq'::regclass),
+    main_item_name character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    asset_id character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    quantity integer,
+    unit character varying(50) COLLATE pg_catalog."default",
+    fiscal_year character varying(10) COLLATE pg_catalog."default",
+    budget_amount numeric(10,2),
+    fund_type character varying(50) COLLATE pg_catalog."default",
+    standard_price numeric(10,2),
+    responsible_person character varying(255) COLLATE pg_catalog."default",
+    asset_type character varying(100) COLLATE pg_catalog."default",
+    usage_location character varying(255) COLLATE pg_catalog."default",
+    delivery_location character varying(10)[] COLLATE pg_catalog."default",
+    delivery_date date,
+    CONSTRAINT assets_pkey PRIMARY KEY (id),
+    CONSTRAINT assets_asset_id_key UNIQUE (asset_id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.assets
+    OWNER to postgres;

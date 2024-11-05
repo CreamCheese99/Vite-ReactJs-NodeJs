@@ -17,7 +17,7 @@ function FormEditDelete2({ onSubmit, onDelete }) {
         
         <div className="container mx-auto flex justify-center items-center space-x-4">
           {/* <button type="button" className="bg-gray-400 text-white px-4 py-2 rounded">ยกเลิก</button> */}
-          <button type="submit" className="bg-yellow-400 text-white px-4 py-2 rounded">บันทึก</button> {/* ปุ่มบันทึก */}
+          <button onClick={onSubmit} type="submit" className="bg-yellow-400 text-white px-4 py-2 rounded">บันทึก</button> {/* ปุ่มบันทึก */}
         </div>
       </form>
       

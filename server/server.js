@@ -101,11 +101,26 @@ console.log('Test = '+ req.body);
 
 
 //************************ */ เส้นทาง API สำหรับดึงข้อมูล (Read)****************************
-app.get('/api/assets', async (req, res) => {
+// app.get('/api/assets', async (req, res) => {
+//   try {
+//     const result = await pool.query('SELECT * FROM assets');
+//     console.log('Fetched assets:', result.rows); // แสดงผลข้อมูลที่ดึงมา
+//     res.status(200).json(result.rows);
+//   } catch (error) {
+//     console.error('Error retrieving assets:', error);
+//     res.status(500).json({ error: 'Error retrieving data' });
+//   }
+// });
+
+app.get('/api/assets/:id', async (req, res) => {
+  const { id } = req.params; // ดึง id จาก params
   try {
-    const result = await pool.query('SELECT * FROM assets');
+    const result = await pool.query('SELECT * FROM assets WHERE id = $1', [id]); // ใช้ $1 เพื่อป้องกัน SQL Injection
     console.log('Fetched assets:', result.rows); // แสดงผลข้อมูลที่ดึงมา
-    res.status(200).json(result.rows);
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'Asset not found' }); // หากไม่พบสินทรัพย์
+    }
+    res.status(200).json(result.rows[0]); // ส่งข้อมูลของสินทรัพย์ที่พบกลับ
   } catch (error) {
     console.error('Error retrieving assets:', error);
     res.status(500).json({ error: 'Error retrieving data' });
@@ -113,9 +128,12 @@ app.get('/api/assets', async (req, res) => {
 });
 
 
+
+
 //********************** */ เส้นทาง API สำหรับแก้ไขข้อมูล (Update)***********************
 app.put('/api/assets/:id', async (req, res) => {
   const { id } = req.params;
+  console.log('Extracted ID:', id); // Log extracted ID
   const {
     main_item_name, 
     asset_id, 
@@ -128,7 +146,8 @@ app.put('/api/assets/:id', async (req, res) => {
     responsible_person, 
     asset_type, 
     usage_location, 
-    delivery_location
+    delivery_location,
+    delivery_date
   } = req.body;
 
   console.log('Updating asset with ID:', id);
@@ -137,15 +156,40 @@ app.put('/api/assets/:id', async (req, res) => {
   try {
     const result = await pool.query(
       `UPDATE assets 
-      SET main_item_name = $1, asset_id = $2, quantity = $3, unit = $4, fiscal_year = $5, 
-      budget_amount = $6, fund_type = $7, standard_price = $8, responsible_person = $9, 
-      asset_type = $10, usage_location = $11, delivery_location = $12 
-      WHERE id = $13 RETURNING *`,
-      [main_item_name, asset_id, quantity, unit, fiscal_year, budget_amount, fund_type, 
-      standard_price, responsible_person, asset_type, usage_location, delivery_location, id]
+      SET 
+        main_item_name = $1, 
+        asset_id = $2, 
+        quantity = $3, 
+        unit = $4, 
+        fiscal_year = $5, 
+        budget_amount = $6, 
+        fund_type = $7, 
+        standard_price = $8, 
+        responsible_person = $9, 
+        asset_type = $10, 
+        usage_location = $11, 
+        delivery_location = $12,
+        delivery_date = $13  
+      WHERE id = $14 RETURNING *`,
+      [
+        main_item_name, 
+        asset_id, 
+        quantity, 
+        unit, 
+        fiscal_year, 
+        budget_amount, 
+        fund_type, 
+        standard_price, 
+        responsible_person, 
+        asset_type, 
+        usage_location, 
+        delivery_location, 
+        delivery_date,
+        id  // Make sure ID is the last parameter
+      ]
     );
 
-    console.log('Update result:', result.rows); // This should show the updated row.
+    console.log('Update result:', result.rows);
 
     if (result.rowCount === 0) {
       return res.status(404).json({ error: 'Asset not found' });
@@ -153,30 +197,35 @@ app.put('/api/assets/:id', async (req, res) => {
 
     res.status(200).json(result.rows[0]);
   } catch (error) {
-    console.error('Error updating asset:', error); // Log the error if any occurs
+    console.error('Error updating asset:', error);
+    console.error('Request body:', req.body);
+    console.error('Request params:', req.params);
     res.status(500).json({ error: 'Error updating data' });
   }
 });
 
 
-//*********************** */ เส้นทาง API สำหรับลบข้อมูล (Delete)**********************
-app.delete('/api/assets/:id', async (req, res) => {
-  const { id } = req.params;
 
-  console.log('Deleting asset with ID:', id); // แสดง ID ที่จะลบ
+//*********************** */ เส้นทาง API สำหรับลบข้อมูล (Delete)**********************
+app.delete('/api/assets/:id', async (req, res) => { 
+  const { id } = req.params; // ดึง id จาก URL พารามิเตอร์
+
+  console.log('Deleting asset with ID:', id); // แสดง ID ของสินทรัพย์ที่จะลบ
 
   try {
+    // ใช้ DELETE พร้อมกับ RETURNING * เพื่อนำข้อมูลสินทรัพย์ที่ถูกลบกลับมาแสดง
     const result = await pool.query('DELETE FROM assets WHERE id = $1 RETURNING *', [id]);
 
+    // ตรวจสอบว่าพบสินทรัพย์ที่ต้องการลบหรือไม่
     if (result.rowCount === 0) {
-      return res.status(404).json({ error: 'Asset not found' });
+      return res.status(404).json({ error: 'Asset not found' }); // ส่งกลับสถานะ 404 หากไม่พบ
     }
 
-    console.log('Deleted asset:', result.rows[0]); // แสดงผลข้อมูลที่ถูกลบ
-    res.status(200).json({ message: 'Data deleted successfully', deletedAsset: result.rows[0] });
+    console.log('Deleted asset:', result.rows[0]); // แสดงข้อมูลสินทรัพย์ที่ถูกลบ
+    res.status(200).json({ message: 'Data deleted successfully', deletedAsset: result.rows[0] }); // ส่งข้อความและข้อมูลสินทรัพย์ที่ถูกลบกลับ
   } catch (error) {
-    console.error('Error deleting asset:', error);
-    res.status(500).json({ error: 'Error deleting data' });
+    console.error('Error deleting asset:', error); // แสดงข้อผิดพลาดหากการลบล้มเหลว
+    res.status(500).json({ error: 'Error deleting data' }); // ส่งข้อความข้อผิดพลาดไปยังผู้ใช้
   }
 });
 
