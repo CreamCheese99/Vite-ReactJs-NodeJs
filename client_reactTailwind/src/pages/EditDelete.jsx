@@ -19,31 +19,31 @@ const EditDelete = () => {
     usage_location: '',
     delivery_location: ''
   });
-  const [isFetching, setIsFetching] = useState(false);
 
+  // Function to fetch data based on asset_id
   const handleFetchData = () => {
     if (!formData.asset_id) {
       alert("Please enter a valid Asset ID to fetch data.");
       return;
     }
-    
-    setIsFetching(true); // เริ่มการโหลดข้อมูล
+
     axios.get(`http://localhost:5000/api/assets/${formData.asset_id}`)
       .then(response => {
-        setFormData(response.data);
+        setFormData(response.data); // Populate the form with fetched data
         console.log('Data fetched successfully:', response.data);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
         alert('Failed to fetch data. Please check the Asset ID and try again.');
-      })
-      .finally(() => {
-        setIsFetching(false); // สิ้นสุดการโหลดข้อมูล
       });
   };
 
-  const handleEdit = (event) => {
-    event.preventDefault();
+  // Function to handle form submission (edit)
+  const handleEdit = () => {
+    if (!formData.asset_id) {
+      alert("Please enter a valid Asset ID to update.");
+      return;
+    }
 
     axios.put(`http://localhost:5000/api/assets/${formData.asset_id}`, formData)
       .then(response => {
@@ -56,6 +56,7 @@ const EditDelete = () => {
       });
   };
 
+  // Function to handle data deletion
   const handleDelete = () => {
     if (!formData.asset_id) {
       alert("Please enter a valid Asset ID to delete.");
@@ -88,35 +89,18 @@ const EditDelete = () => {
       });
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
   return (
     <div className="bg-gray-50 text-gray-600">
       <Header />
       <div className="flex">
         <Sidebar />
-        <div className="content text-sm font-prompt md:container md:mx-auto w-1/2 p-8 text-left border-xl">
-          <input
-            type="text"
-            placeholder="Enter Asset ID"
-            value={formData.asset_id}
-            onChange={(e) => setFormData({ ...formData, asset_id: e.target.value })}
-          />
-          <button onClick={handleFetchData} disabled={isFetching}>
-            {isFetching ? 'Fetching...' : 'Fetch Data'}
-          </button>
+        <div className="content">
           <FormEditDelete
-            onSubmit={handleEdit}
+            onSubmit={handleEdit} 
             onDelete={handleDelete}
-            onChange={handleChange} // เพิ่ม onChange prop
-            formData={formData}
-            setFormData={setFormData}
+            onSearch={handleFetchData} // Send search function to FormEditDelete
+            formData={formData} 
+            onChange={setFormData} // Pass setFormData for dynamic input changes
           />
         </div>
       </div>
