@@ -1,5 +1,5 @@
 const express = require('express');
-const { Pool } = require('pg');
+const pool= require('./database.js');
 const cors = require('cors');
 
 const app = express();
@@ -7,7 +7,7 @@ const port = 5000;
 
 // Whitelist ของต้นทางที่ได้รับอนุญาต
 const whitelist = [
-  'http://localhost:5173', // ต้นทางของ frontend
+  'http://localhost:5176', // ต้นทางของ frontend
   'http://localhost:5000'  // ต้นทางของ backend
 ];
 
@@ -26,13 +26,14 @@ app.use(cors(corsOptions));
 app.use(express.json()); // Middleware สำหรับ parse JSON
 
 // การตั้งค่าเชื่อมต่อ PostgreSQL
-const pool = new Pool({
+/*const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'Inventory',
   password: '1234',
   port: 5432,
 });
+*/
 
 // ฟังก์ชันเพิ่มข้อมูลทรัพย์สินลงในฐานข้อมูล
 const insertAsset = async (data) => {

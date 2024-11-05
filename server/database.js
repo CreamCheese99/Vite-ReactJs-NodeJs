@@ -7,7 +7,7 @@ const pool = new Pool({
     user: 'postgres',       // ชื่อผู้ใช้ PostgreSQL
     host: 'localhost',           // โฮสต์ของฐานข้อมูล
     database: 'Inventory',   // ชื่อฐานข้อมูล
-    password: '1234',   // รหัสผ่านของผู้ใช้
+    password: 'Anfieldtuna@1',   // รหัสผ่านของผู้ใช้
     port: 5432,                  // พอร์ต PostgreSQL (ปกติคือ 5432)
   });
 
