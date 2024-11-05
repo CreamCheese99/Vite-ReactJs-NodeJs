@@ -166,3 +166,4 @@ class LdapAuth {
 }
 
 module.exports = LdapAuth;
+

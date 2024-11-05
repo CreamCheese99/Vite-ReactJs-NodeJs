@@ -375,25 +375,27 @@ const port = 5001;
 
 // กำหนดการตั้งค่า CORS
 const whitelist = [
-  'http://localhost:5173', // ต้นทางของ frontend
-  'http://localhost:5000'  // ต้นทางของ backend
+    'http://localhost:5173', // URL ของ frontend ที่ใช้งาน
+    'http://localhost:5001'   // URL ของ backend ถ้ามี
 ];
+
 const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
+    origin: function (origin, callback) {
+        if (!origin || whitelist.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true,
 };
+
 
 app.use(cors(corsOptions));
 app.use(express.json());
 
 // สร้างอินสแตนซ์ของ LdapAuth
-const ldapAuth = new LdapAuth('10.252.92.100', '389', 'dc=kmitl,dc=ac,dc=th'); // เปลี่ยนค่าตามการตั้งค่าของคุณ
+const ldapAuth = new LdapAuth('10.252.92.100', 389, 'dc=kmitl,dc=ac,dc=th'); // เปลี่ยนค่าตามการตั้งค่าของคุณ
 
 // Endpoint สำหรับตรวจสอบการเข้าสู่ระบบ
 app.post('/api/login', async (req, res) => {
