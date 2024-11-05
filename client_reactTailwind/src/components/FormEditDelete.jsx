@@ -8,7 +8,7 @@ function FormEditDelete({ formData, onChange, onSubmit, onDelete, isEditMode, on
   };
 
   return (
-    <div className="font-prompt text-sm md:container md:mx-auto w-1/2 p-8 text-left">
+    <div className="font-prompt text-sm md:container md:mx-auto w-full p-8 text-left">
       <h2 className="text-xl font-semibold text-pink-600 mb-4">
         {isEditMode ? 'แก้ไขข้อมูลพัสดุ' : 'ลบ/แก้ไขข้อมูลพัสดุ'}
       </h2>
@@ -25,15 +25,15 @@ function FormEditDelete({ formData, onChange, onSubmit, onDelete, isEditMode, on
           </button>
         </div>
 
-        <div className="mb-4">
+        <div className="items-center w-1/4">
           {renderInput('รายการพัสดุหลัก', 'main_item_name', 'text', onChange, formData.main_item_name)}
         </div>
 
-        <div className="mb-4">
+        <div className="items-center w-1/4">
           {renderInput('จำนวน', 'quantity', 'number', onChange, formData.quantity)}
         </div>
 
-        <div className="mb-4">
+        <div className="items-center w-3/4">
           {renderInput('หน่วยนับ', 'unit', 'text', onChange, formData.unit)}
           {renderInput('ประจำปีงบประมาณ', 'fiscal_year', 'text', onChange, formData.fiscal_year)}
           {renderInput('วงเงินงบประมาณ', 'budget_amount', 'text', onChange, formData.budget_amount)}
@@ -43,11 +43,11 @@ function FormEditDelete({ formData, onChange, onSubmit, onDelete, isEditMode, on
           {renderInput('สถานที่ใช้งาน', 'usage_location', 'text', onChange, formData.usage_location)}
         </div>
 
-        <div className="mb-4">
+        <div className="items-center w-1/4" >
           {renderInput('วันที่ส่งมอบ', 'delivery_location', 'text', onChange, formData.delivery_location)}
         </div>
 
-        <div className="mb-4">
+        <div className="items-center w-1/2">
           {renderInput('ผู้รับผิดชอบ', 'responsible_person', 'text', onChange, formData.responsible_person)}
         </div>
 
