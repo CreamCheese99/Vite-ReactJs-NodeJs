@@ -1,41 +1,66 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import Sidebar from '../components/Sidebar';
 import FormInsert2 from '../components/FormInsert2';
 import Header from '../components/Header';
 
-//function Insert({ onInsertData }) {
-const Insert2=()=>{  
-const [formData,setFormData]=useState({
-
-    
-      main_asset_id:'',
-      sub_asset_name:'',
-      quantity:'',
-      unit:'',
-      unit_price:'',
-      sub_asset_type:'',
-      sub_asset_description:'',
- 
+const Insert2 = () => {  
+  const [formData, setFormData] = useState({
+      main_asset_id: '',
+      sub_asset_name: '',
+      quantity: '',
+      unit: '',
+      unit_price: '',
+      sub_asset_type: '',
+      sub_asset_description: '',
   });
-  const handleSubmit = (event) => {
+
+  const [errorMessage, setErrorMessage] = useState(''); // State for error messages
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+    console.log(formData); // Log updated formData
+  };
+
+  const handleSubmit2 = async (event) => {
     event.preventDefault();
- axios.post('http://localhost:5000/api/assets', formData)
- .then(response => {
-   console.log('ข้อมูลถูกส่งสำเร็จ:', response.data);
-   // ทำอะไรบางอย่างหลังจากส่งข้อมูลสำเร็จ เช่น แสดง alert หรือ redirect ไปหน้าอื่น
- })
- .catch(error => {
-   console.error('เกิดข้อผิดพลาดในการส่งข้อมูล:', error);
-   // แสดงข้อความแจ้งเตือนเมื่อเกิดข้อผิดพลาด
- });
+    try {
+        const response = await fetch('http://localhost:5000/api/subassets', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData), // ตรวจสอบให้แน่ใจว่า formData มีค่าที่ไม่ซ้ำกัน
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'เกิดข้อผิดพลาดบางอย่าง');
+        }
+
+        const data = await response.json();
+        console.log('ข้อมูลถูกส่งเรียบร้อยแล้ว:', data);
+    } catch (error) {
+        console.error('ข้อผิดพลาดในการส่งข้อมูล:', error);
+    }
 };
+ 
+
   return (
     <div className="bg-gray-50 text-gray-600">
       <Header />
       <div className="flex">
         <Sidebar />
-        <FormInsert2 onSubmit={handleSubmit} /> {/* ส่งฟังก์ชัน handleSubmit ไปที่ Form */}
+        <FormInsert2 
+          formData={formData} 
+          onChange={handleChange} 
+          onSubmit={handleSubmit2} 
+          errorMessage={errorMessage} // ส่งข้อความข้อผิดพลาดไปยัง FormInsert2
+        /> 
       </div>
     </div>
   );

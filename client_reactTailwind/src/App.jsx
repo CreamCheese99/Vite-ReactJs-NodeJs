@@ -20,6 +20,19 @@ const App = () => {
     }
   };
 
+  const handleSubmit2 = async (data) => {
+    try {
+      const response = await Axios.post('http://localhost:5000/api/subassets', data);
+      console.log('Data inserted:', response.data);
+    } catch (error) {
+      console.error('Error inserting data:', error);
+    }
+  };
+
+
+
+  
+
   const [loading, setLoading] = useState(false);
   const [responseMessage, setResponseMessage] = useState('');
 
@@ -58,7 +71,7 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/insert" element={<Insert onSubmit={handleSubmit} />} />
-      <Route path="/insert2" element={<Insert2 />} />
+      <Route path="/insert2" element={<Insert2 onSubmit={handleSubmit2} />} />
       
       <Route path="/editdelete2" element={<EditDelete2 />} />
       <Route path="/assetsummary" element={<AssetSummary />} />

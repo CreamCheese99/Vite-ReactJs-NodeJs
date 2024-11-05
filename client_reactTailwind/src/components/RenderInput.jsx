@@ -15,3 +15,4 @@ function renderInput (label, name, type = 'text', onChange) {
 }
 
 export default renderInput
+
