@@ -1,15 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react'; 
 import renderInput from './RenderInput';
 import renderTextArea from './RenderTextArea';
 
 function FormEditDelete({ formData, onChange, onSubmit, onDelete, isEditMode }) {
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSubmit(formData); // Pass formData for update or create
+
+    // การตรวจสอบข้อมูลก่อนส่ง
+    if (!formData.main_item_name || !formData.asset_id) {
+      alert("กรุณากรอกข้อมูลให้ครบถ้วน");
+      return; // หยุดการส่งหากข้อมูลไม่ครบ
+    }
+
+    onSubmit(formData); // ส่ง formData สำหรับการอัปเดตหรือสร้างใหม่
   };
 
   const handleDelete = () => {
-    onDelete(formData.id); // Pass the record's ID to delete
+    if (window.confirm("คุณแน่ใจว่าต้องการลบข้อมูลนี้?")) {
+      onDelete(formData.id); // ส่ง ID ของระเบียนที่ต้องการลบ
+    }
   };
 
   return (

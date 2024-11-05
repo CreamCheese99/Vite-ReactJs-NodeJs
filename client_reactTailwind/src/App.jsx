@@ -19,6 +19,17 @@ const App = () => {
     } catch (error) {
       console.error('Error inserting data:', error);
     }
+    
+  }
+
+  const handleSubmit = async (data) => {
+    try {
+      const response = await Axios.post('http://localhost:5000/api/assets', data);
+      console.log('Data inserted:', response.data);
+    } catch (error) {
+      console.error('Error inserting data:', error);
+    }
+    
   }
    
 //   // ******************SubInsert**********************
