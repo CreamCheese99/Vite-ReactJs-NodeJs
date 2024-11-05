@@ -19,57 +19,81 @@ const EditDelete = () => {
     usage_location: '',
     delivery_location: ''
   });
+  const [isFetching, setIsFetching] = useState(false);
+
+  const handleFetchData = () => {
+    if (!formData.asset_id) {
+      alert("Please enter a valid Asset ID to fetch data.");
+      return;
+    }
+    
+    setIsFetching(true); // เริ่มการโหลดข้อมูล
+    axios.get(`http://localhost:5000/api/assets/${formData.asset_id}`)
+      .then(response => {
+        setFormData(response.data);
+        console.log('Data fetched successfully:', response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+        alert('Failed to fetch data. Please check the Asset ID and try again.');
+      })
+      .finally(() => {
+        setIsFetching(false); // สิ้นสุดการโหลดข้อมูล
+      });
+  };
 
   const handleEdit = (event) => {
     event.preventDefault();
 
-    // Send the updated data to the API for editing
     axios.put(`http://localhost:5000/api/assets/${formData.asset_id}`, formData)
       .then(response => {
         console.log('Data successfully updated:', response.data);
-        // Optionally, show a success message or redirect
         alert('Data updated successfully!');
       })
       .catch(error => {
         console.error('Error updating data:', error);
-        // Optionally, show an error message
         alert('Failed to update data.');
       });
   };
 
   const handleDelete = () => {
-    const assetId = prompt("Enter the Asset ID to delete:"); // Prompt for Asset ID
-    if (assetId) {
-      axios.delete(`http://localhost:5000/api/assets/${assetId}`)
-        .then(response => {
-          console.log('Data successfully deleted:', response.data);
-          // Optionally, show a success message or redirect
-          alert('Data deleted successfully!');
-          // Clear form data if necessary
-          setFormData({
-            main_item_name: '',
-            asset_id: '',
-            quantity: '',
-            unit: '',
-            fiscal_year: '',
-            budget_amount: '',
-            fund_type: '',
-            standard_price: '',
-            responsible_person: '',
-            asset_type: '',
-            usage_location: '',
-            delivery_location: ''
-          });
-        })
-        .catch(error => {
-          console.error('Error deleting data:', error);
-          // Optionally, show an error message
-          alert('Failed to delete data.');
-        });
-    } else {
-      console.warn("No Asset ID provided");
-      alert("Please provide a valid Asset ID.");
+    if (!formData.asset_id) {
+      alert("Please enter a valid Asset ID to delete.");
+      return;
     }
+
+    axios.delete(`http://localhost:5000/api/assets/${formData.asset_id}`)
+      .then(response => {
+        console.log('Data successfully deleted:', response.data);
+        alert('Data deleted successfully!');
+        // Clear form data after deletion
+        setFormData({
+          main_item_name: '',
+          asset_id: '',
+          quantity: '',
+          unit: '',
+          fiscal_year: '',
+          budget_amount: '',
+          fund_type: '',
+          standard_price: '',
+          responsible_person: '',
+          asset_type: '',
+          usage_location: '',
+          delivery_location: ''
+        });
+      })
+      .catch(error => {
+        console.error('Error deleting data:', error);
+        alert('Failed to delete data.');
+      });
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   return (
@@ -77,15 +101,27 @@ const EditDelete = () => {
       <Header />
       <div className="flex">
         <Sidebar />
-        <FormEditDelete
-          onSubmit={handleEdit} 
-          onDelete={handleDelete}
-          formData={formData} 
-          setFormData={setFormData} // Pass setFormData to the form
-        /> 
+        <div className="content text-sm font-prompt md:container md:mx-auto w-1/2 p-8 text-left border-xl">
+          <input
+            type="text"
+            placeholder="Enter Asset ID"
+            value={formData.asset_id}
+            onChange={(e) => setFormData({ ...formData, asset_id: e.target.value })}
+          />
+          <button onClick={handleFetchData} disabled={isFetching}>
+            {isFetching ? 'Fetching...' : 'Fetch Data'}
+          </button>
+          <FormEditDelete
+            onSubmit={handleEdit}
+            onDelete={handleDelete}
+            onChange={handleChange} // เพิ่ม onChange prop
+            formData={formData}
+            setFormData={setFormData}
+          />
+        </div>
       </div>
     </div>
   );
-}
+};
 
 export default EditDelete;
