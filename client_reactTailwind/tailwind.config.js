@@ -1,18 +1,32 @@
-/** @type {import('tailwindcss').Config} */
-export default {
+// /** @type {import('tailwindcss').Config} */
+// export default {
+//   content: [
+//     "./index.html",
+//     "./src/**/*.{js,ts,jsx,tsx}",
+//     'node_modules/flowbite/**/*.js'
+//   ],
+//   theme: {
+//     extend: {
+//       fontFamily: {
+//         prompt: ["Prompt", "sans-serif"]
+//       },
+//     },
+//   },
+//   plugins: [
+//     require('flowbite/plugin')
+//   ],
+// }
+
+
+module.exports = {
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-    'node_modules/flowbite/**/*.js'
+    "./src/**/*.{js,jsx,ts,tsx}",
+    "./node_modules/flowbite/**/*.js" // เพิ่มการใช้งาน flowbite
   ],
   theme: {
-    extend: {
-      fontFamily: {
-        prompt: ["Prompt", "sans-serif"]
-      },
-    },
+    extend: {},
   },
   plugins: [
-    require('flowbite/plugin')
+    require('flowbite/plugin') // เรียกใช้ flowbite plugin ปกติ
   ],
-}
+};
