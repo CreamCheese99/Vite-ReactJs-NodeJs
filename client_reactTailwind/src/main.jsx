@@ -1,4 +1,4 @@
-
+/*
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.jsx';
@@ -15,6 +15,8 @@ import Insert2 from './pages/Insert2.jsx';
 import EditDelete from './pages/EditDelete.jsx';
 import EditDelete2 from './pages/EditDelete2.jsx';
 import AssetSummary from './pages/AssetSummary.jsx';
+
+import ShowAllAssets from './pages/ShowAllAssets.jsx';
 
 
 
@@ -44,13 +46,33 @@ const router = createBrowserRouter([
     path: "/AssetSummary",  // เส้นทางไปยังหน้าการเพิ่มข้อมูล (Insert)
     element: <AssetSummary />,  // ใช้ component Insert ที่จะแสดง
   },
+  {
+    path: "/ShowAllAssets",  // เส้นทางไปยังหน้าการเพิ่มข้อมูล (Insert)
+    element: <ShowAllAssets />,  // ใช้ component Insert ที่จะแสดง
+  },
 
 ]);
 
 // สร้าง root และ render app โดยใช้ RouterProvider
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />  {/* ใช้ RouterProvider เพื่อใช้ router */}
+    <RouterProvider router={router} />  {/* ใช้ RouterProvider เพื่อใช้ router */ /*}
   </StrictMode>
 );
+
+*/
+
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import Layout from './components/Layout';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <Layout />
+  </React.StrictMode>
+);
+
+
+
 

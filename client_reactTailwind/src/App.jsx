@@ -1,3 +1,4 @@
+/* old code
 import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 import Axios from 'axios';
@@ -80,5 +81,34 @@ const App = () => {
     </Routes>
   );
 };
+
+export default App;
+
+*/
+
+/* New Code to test layout concept */
+
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import   
+ DataTable from './components/DataTable';   
+
+import FormAdd from './components/FormAdd';
+import FormEdit from './components/FormEdit';
+
+function App() {
+  return (
+    <Router>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<DataTable />} />
+          <Route path="/add" element={<FormAdd />} />
+          <Route path="/edit/:id" element={<FormEdit />} />
+        </Routes>
+      </Layout>
+    </Router>
+  );
+}
 
 export default App;
