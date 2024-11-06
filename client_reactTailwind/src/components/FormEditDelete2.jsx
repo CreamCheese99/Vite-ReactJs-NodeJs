@@ -9,7 +9,7 @@ function FormEditDelete2({ onSubmit, onDelete }) {
 
         <div className="flex flex-col space-y-4">
           <div className="w-1/2">
-            {renderInput('รายการพัสดุหลัก', 'text', 'main_asset_id')}
+            {renderInput('รหัสพัสดุหลัก', 'text', 'main_asset_id')}
           </div>
 
           <div className="w-3/4">
