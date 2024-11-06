@@ -37,42 +37,42 @@ function AllAssets() {
         });
     }
   };
-  return (
-    <div className="font-prompt md:container md:mx-auto w-1/2 p-8 text-left">
-      <table className="border-collapse table-auto w-full border border-gray-300 rounded-lg text-center bg-white">
-        <thead className="bg-gray-100 rounded-t-lg">
+  return ( 
+    <div className="font-prompt md:container  md:mx-auto w-1/2 p-8 text-left">
+      <table className="w-full border border-gray-300 shadow-lg rounded-lg overflow-hidden">
+        <thead className="bg-gradient-to-r from-blue-100 to-purple-100 text-gray-700">
           <tr>
-            <th className="p-3 border text-base border-gray-300 text-gray-700">ลำดับ</th>
-            <th className="p-3 border text-base border-gray-300 text-gray-700">รหัสพัสดุย่อย</th>
-            <th className="p-3 border text-base border-gray-300 text-gray-700">พัสดุหลัก</th>
-            <th className="p-3 border text-base border-gray-300 text-gray-700">จำนวนพัสดุย่อย</th>
-            <th className="p-3 border text-base border-gray-300 text-gray-700">สถานที่ใช้งาน</th>
-            <th className="p-3 border text-base border-gray-300 text-gray-700">สภาพใช้งาน</th>
-            <th className="p-3 border text-base border-gray-300 text-gray-700">ราคา/หน่วย</th>
-            <th className="p-3 border text-base border-gray-300 text-gray-700">อายุการใช้งาน</th>
-            <th className="p-3 border text-base border-gray-300 text-gray-700">สาเหตุเลิกใช้งาน</th>
-            <th className="p-3 border text-base border-gray-300 text-gray-700" colSpan="2">Actions</th>
+            <th className="p-3 text-sm font-semibold border-b border-gray-300">ลำดับ</th>
+            <th className="p-3 text-sm font-semibold border-b border-gray-300">รหัสพัสดุย่อย</th>
+            <th className="p-3 text-sm font-semibold border-b border-gray-300">พัสดุหลัก</th>
+            <th className="p-3 text-sm font-semibold border-b border-gray-300">จำนวนพัสดุย่อย</th>
+            <th className="p-3 text-sm font-semibold border-b border-gray-300">สถานที่ใช้งาน</th>
+            <th className="p-3 text-sm font-semibold border-b border-gray-300">สภาพใช้งาน</th>
+            <th className="p-3 text-sm font-semibold border-b border-gray-300">ราคา/หน่วย</th>
+            <th className="p-3 text-sm font-semibold border-b border-gray-300">อายุการใช้งาน</th>
+            <th className="p-3 text-sm font-semibold border-b border-gray-300">สาเหตุเลิกใช้งาน</th>
+            <th className="p-3 text-sm font-semibold border-b border-gray-300" colSpan="2">Actions</th>
             
           </tr>
         </thead>
       
-      <tbody>
+      <tbody className='bg-white text-gray-800'>
         {assets.map((asset,index) => (
-          <tr key={asset.id}>
-            <td>{index+1}</td>
-            <td>{asset.main_item_name}</td>
-            <td>{asset.asset_id}</td>
-            <td>{asset.quantity}</td>
+          <tr key={asset.id} className="hover:bg-gray-50 transition ease-in-out">
+            <td className="p-3 text-xs border-b border-gray-300">{index+1}</td>
+            <td className="p-3 text-xs border-b border-gray-300">{asset.main_item_name}</td>
+            <td className="p-3 text-xs border-b border-gray-300">{asset.asset_id}</td>
+            <td className="p-3 text-xs border-b border-gray-300">{asset.quantity}</td>
     
-            <td>{asset.fiscal_year}</td>
-            <td>{asset.budget_amount}</td>
-            <td>{asset.responsible_person}</td>
-            <td>{asset.usage_location}</td>
-            <td>{asset.delivery_location}</td>
+            <td className="p-3 text-xs  border-b border-gray-300">{asset.fiscal_year}</td>
+            <td className="p-3 text-xs border-b border-gray-300">{asset.budget_amount}</td>
+            <td className="p-3 text-xs border-b border-gray-300">{asset.responsible_person}</td>
+            <td className="p-3 text-xs border-b border-gray-300">{asset.usage_location}</td>
+            <td className="p-3 text-xs border-b border-gray-300">{asset.delivery_location}</td>
  
             <td>
-              <button className="bg-gray-300 hover:bg-gray-400 text-gray-700 rounded-lg px-4 py-1 text-sm md:mt-7" onClick={() => handleEdit(asset.id)}>Edit</button></td>
-             <td> <button className="bg-gray-300 hover:bg-gray-400 text-gray-700 rounded-lg px-4 py-1 text-sm md:mt-7" onClick={() => handleDelete(asset.id)}>Delete</button>            </td>
+              <button className="bg-gray-300 hover:bg-gray-400 text-gray-700 rounded-lg px-3 py-1 text-sm" onClick={() => handleEdit(asset.id)}>Edit</button></td>
+             <td> <button className="bg-gray-300 hover:bg-gray-400 text-gray-700 rounded-lg px-3 py-1 text-sm" onClick={() => handleDelete(asset.id)}>Delete</button>            </td>
           </tr>
         ))}
       </tbody>

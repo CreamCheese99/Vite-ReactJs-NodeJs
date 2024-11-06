@@ -2,7 +2,6 @@ import React from 'react';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
 import SearchForm from '../components/SearchForm';
-import DataTable from '../components/DataTable';
 import AllAssets from '../components/AllAssets';
 
 function ShowAllAssets() {
@@ -13,7 +12,7 @@ function ShowAllAssets() {
         <Sidebar />
         <div className="flex-1">
           <SearchForm />
-          <DataTable />
+          
           <AllAssets />
         </div>
       </div>

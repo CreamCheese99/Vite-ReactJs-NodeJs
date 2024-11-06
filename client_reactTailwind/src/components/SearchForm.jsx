@@ -23,7 +23,7 @@ function SearchForm() {
             </div>
       </div>
 
-      <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+      <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mt-8">
         <div className="flex flex-col w-full md:w-1/2">
           <label className="text-gray-700 text-sm font-semibold mb-1">รหัสพัสดุ</label>
           <input
