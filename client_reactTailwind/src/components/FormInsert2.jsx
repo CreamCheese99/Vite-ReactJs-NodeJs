@@ -22,7 +22,7 @@ function FormInsert2({ formData, onChange, onSubmit }) {
       </div>
 
       <div  className="items-center w-3/4"> 
-        {renderTextArea('ชื่อรายการพัสดุย่อย', 'sub_asset_name','text',onChange)}
+        {renderInput('ชื่อรายการพัสดุย่อย', 'sub_asset_name','text',onChange)}
         {renderInput('จำนวน', 'quantity', 'number',onChange)}
         {renderInput('หน่วยนับ', 'unit','text',onChange)}
         {renderInput('ราคาต่อหน่วย', 'unit_price','number',onChange)}

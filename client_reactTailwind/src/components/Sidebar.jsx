@@ -22,6 +22,7 @@ function Sidebar() {
         <div className="ml-4 space-y-2">
           <AddLogo nameLogoAdd="เพิ่มข้อมูล" className="text-sm text-gray-600 hover:text-gray-800  active:text-gray-900" to="/Insert"/>
           <EditLogo nameLogoEdit="ลบ/แก้ไขข้อมูล" className="text-sm text-gray-600 hover:text-gray-800  active:text-gray-900" to="/EditDelete" />
+          <SumLogo nameLogoSum="ดูข้อมูล" className="text-sm text-gray-600 hover:text-gray-800  active:text-gray-900" to="/ShowAAllAsset2" />
           {/* <EditLogo nameLogoEdit="TestShowAll" className="text-sm text-gray-600 hover:text-gray-800  active:text-gray-900" to="/ShowAllAssets" /> */}
         </div>
 

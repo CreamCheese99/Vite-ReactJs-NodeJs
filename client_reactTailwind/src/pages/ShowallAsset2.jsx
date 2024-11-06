@@ -2,9 +2,9 @@ import React from 'react';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
 import SearchForm from '../components/SearchForm';
-import AllAssets from '../components/AllAssets';
+import AllAssets2 from '../components/AllAsset2';
 
-function ShowAllAssets() {
+function ShowAllAssets2() {
   return (
     <div className="bg-gray-50 text-gray-600">
       <Header />
@@ -12,12 +12,12 @@ function ShowAllAssets() {
         <Sidebar />
         <div className="flex-1">
           <SearchForm />
-          <AllAssets />
+          <AllAssets2 />
         </div>
       </div>
     </div>
   );
 }
 
-export default ShowAllAssets;
+export default ShowAllAssets2;
 

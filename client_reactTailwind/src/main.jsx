@@ -18,7 +18,7 @@ import EditDelete2 from './pages/EditDelete2.jsx';
 import AssetSummary from './pages/AssetSummary.jsx';
 
 import ShowAllAssets from './pages/ShowAllAssets.jsx';
-
+import ShowAllAssets2 from './pages/ShowallAsset2.jsx';
 
 
 
@@ -54,6 +54,10 @@ const router = createBrowserRouter([
   {
     path: "/ShowAllAssets",  // เส้นทางไปยังหน้าการเพิ่มข้อมูล (Insert)
     element: <ShowAllAssets />,  // ใช้ component Insert ที่จะแสดง
+  },
+  {
+    path: "/ShowAllAssets2",  // เส้นทางไปยังหน้าการเพิ่มข้อมูล (Insert)
+    element: <ShowAllAssets2 />,  // ใช้ component Insert ที่จะแสดง
   },
 
 ]);

@@ -4,10 +4,10 @@ import axios from 'axios';
 const FormEdit = () => {
   const { id } = useParams();
   const [formData, setFormData] = useState({
-    name: '',
-    description: '',
-    year: '',
-    department: ''
+    main_item_name: '',
+    // description: '',
+    // year: '',
+    // department: ''
   });
   useEffect(() => {
     const fetchData = async () => {
@@ -33,6 +33,7 @@ const FormEdit = () => {
       alert('เกิดข้อผิดพลาดในการอัปเดตข้อมูล');
     }
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <label>
