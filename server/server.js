@@ -366,6 +366,78 @@
 
 
 //backup 3
+// const express = require('express');
+// const cors = require('cors');
+// const LdapAuth = require('./LdapAuth');  // นำเข้าไฟล์ LdapAuth.js
+
+// const app = express();
+// const port = 5001;
+
+// // กำหนดการตั้งค่า CORS
+// const whitelist = [
+//     'http://localhost:5173', // URL ของ frontend ที่ใช้งาน
+//     'http://localhost:5001'   // URL ของ backend ถ้ามี
+// ];
+
+// const corsOptions = {
+//   origin: 'http://localhost:5173',  // URL ของ frontend ที่อนุญาต
+//   credentials: true,  // อนุญาตการส่งข้อมูลที่ต้องการการรับรองตัวตน
+// };
+
+
+
+
+// app.use(cors(corsOptions));
+// app.use(express.json());
+
+// // สร้างอินสแตนซ์ของ LdapAuth
+// const ldapAuth = new LdapAuth('10.252.92.100', 389, 'dc=kmitl,dc=ac,dc=th'); // เปลี่ยนค่าตามการตั้งค่าของคุณ
+
+// // Endpoint สำหรับตรวจสอบการเข้าสู่ระบบ
+// app.post('/api/login', async (req, res) => {
+//   const { username, password } = req.body;
+
+//   console.log('Request Body:', req.body); // เพิ่มเพื่อดูข้อมูลที่ถูกส่งมา
+
+//   if (!username || !password) {
+//     return res.status(400).json({ message: 'Username and password are required' });
+//   }
+
+//   try {
+//     const isAuthenticated = await ldapAuth.authenticate(username, password);
+    
+//     if (isAuthenticated) {
+//       const userInfo = await ldapAuth.getUserInfo(username);
+//       res.json({
+//         success: true,
+//         message: 'Authentication successful',
+//         user: userInfo
+//       });
+//     } else {
+//       res.status(401).json({
+//         success: false,
+//         message: 'Invalid credentials'
+//       });
+//     }
+//   } catch (error) {
+//     res.status(500).json({
+//       success: false,
+//       message: error.message
+//     });
+//   }
+// });
+
+// app.listen(port, () => {
+//   console.log(`Server is running on http://localhost:${port}`);
+// });
+
+// // Cleanup when server shuts down
+// process.on('SIGTERM', () => {
+//   ldapAuth.close();
+//   process.exit(0);
+// });
+
+//Authentication successful
 const express = require('express');
 const cors = require('cors');
 const LdapAuth = require('./LdapAuth');  // นำเข้าไฟล์ LdapAuth.js
@@ -380,16 +452,9 @@ const whitelist = [
 ];
 
 const corsOptions = {
-    origin: function (origin, callback) {
-        if (!origin || whitelist.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    credentials: true,
+  origin: 'http://localhost:5173',  // URL ของ frontend ที่อนุญาต
+  credentials: true,  // อนุญาตการส่งข้อมูลที่ต้องการการรับรองตัวตน
 };
-
 
 app.use(cors(corsOptions));
 app.use(express.json());
@@ -401,19 +466,24 @@ const ldapAuth = new LdapAuth('10.252.92.100', 389, 'dc=kmitl,dc=ac,dc=th'); // 
 app.post('/api/login', async (req, res) => {
   const { username, password } = req.body;
 
+  console.log('Request Body:', req.body); // แสดงค่าที่รับมาจาก frontend
+
   if (!username || !password) {
     return res.status(400).json({ message: 'Username and password are required' });
   }
 
   try {
     const isAuthenticated = await ldapAuth.authenticate(username, password);
-    
+    console.log('Authentication result:', isAuthenticated);  // แสดงผลลัพธ์การตรวจสอบผู้ใช้
+
     if (isAuthenticated) {
       const userInfo = await ldapAuth.getUserInfo(username);
+      console.log('User Info:', userInfo);  // แสดงข้อมูลผู้ใช้จาก LDAP
+
       res.json({
         success: true,
         message: 'Authentication successful',
-        user: userInfo
+        user: userInfo // ส่งข้อมูลผู้ใช้กลับไปยัง frontend
       });
     } else {
       res.status(401).json({
@@ -422,6 +492,7 @@ app.post('/api/login', async (req, res) => {
       });
     }
   } catch (error) {
+    console.error('Error:', error);  // แสดงข้อผิดพลาดหากเกิดขึ้น
     res.status(500).json({
       success: false,
       message: error.message
