@@ -1,4 +1,4 @@
-/* old code
+
 import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 import Axios from 'axios';
@@ -84,9 +84,9 @@ const App = () => {
 
 export default App;
 
-*/
 
-/* New Code to test layout concept */
+
+/* New Code to test layout concept 
 
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -112,3 +112,4 @@ function App() {
 }
 
 export default App;
+*/

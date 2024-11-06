@@ -13,8 +13,8 @@ function ShowAllAssets() {
         <Sidebar />
         <div className="flex-1">
           <SearchForm />
-          <DataTable />
-          <ShowAllData />
+  
+          <AllAssets />
         </div>
       </div>
     </div>

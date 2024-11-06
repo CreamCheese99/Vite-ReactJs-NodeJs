@@ -1,4 +1,4 @@
-/*
+
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.jsx';
@@ -56,11 +56,11 @@ const router = createBrowserRouter([
 // สร้าง root และ render app โดยใช้ RouterProvider
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />  {/* ใช้ RouterProvider เพื่อใช้ router */ /*}
+    <RouterProvider router={router} />  {/* ใช้ RouterProvider เพื่อใช้ router */ }
   </StrictMode>
 );
 
-*/
+/* Test new layout code
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -74,5 +74,4 @@ root.render(
 );
 
 
-
-
+*/

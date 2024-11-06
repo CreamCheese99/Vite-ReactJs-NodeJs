@@ -6,6 +6,7 @@ const app = express();
 const port = 5000;
 
 // Whitelist ของต้นทางที่ได้รับอนุญาต
+
 const whitelist = [
   'http://localhost:5176', // ต้นทางของ frontend
   'http://localhost:5000'  // ต้นทางของ backend
@@ -13,10 +14,11 @@ const whitelist = [
 
 const corsOptions = {
   origin: function (origin, callback) {
-    if (!origin || whitelist.indexOf(origin) !== -1) {
+   if (!origin || whitelist.indexOf(origin) !== -1) {
+   //Disable cheking whitelist for awhile
       callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'));
+     callback(new Error('Not allowed by CORS'));
     }
   },
   credentials: true, // อนุญาต cookies และข้อมูล credentials ระหว่าง frontend และ backend
@@ -24,6 +26,9 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json()); // Middleware สำหรับ parse JSON
+
+
+
 
 // การตั้งค่าเชื่อมต่อ PostgreSQL
 /*const pool = new Pool({
@@ -230,6 +235,16 @@ app.delete('/api/assets/:id', async (req, res) => {
   }
 });
 
+app.get('/api/Allassets', (req, res) => {
+  pool.query('SELECT * FROM assets', (error, results) => {
+      if (error) {
+          console.error(error);
+          res.status(500).send('Error retrieving data');
+      } else {
+          res.json(results.rows);
+      }
+  });
+});
 // เชื่อมต่อกับ PostgreSQL
 pool.connect()
   .then(() => console.log("Connected to PostgreSQL"))
