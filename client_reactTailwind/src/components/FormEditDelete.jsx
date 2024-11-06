@@ -25,10 +25,12 @@ function FormEditDelete({ formData, onChange, onSubmit, onDelete, isEditMode, on
           </button>
         </div>
 
+        {/* แสดงอินพุตอื่น ๆ เช่น รายการพัสดุหลัก, จำนวน, หน่วยนับ, และอื่น ๆ */}
         <div className="items-center w-1/4">
           {renderInput('รายการพัสดุหลัก', 'main_item_name', 'text', onChange, formData.main_item_name)}
         </div>
 
+        {/* เพิ่มฟิลด์ที่เหลือตามลำดับ */}
         <div className="items-center w-1/4">
           {renderInput('จำนวน', 'quantity', 'number', onChange, formData.quantity)}
         </div>

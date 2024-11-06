@@ -16,15 +16,19 @@ function FormInsert2({ formData, onChange, onSubmit }) {
       <h2 className="text-xl font-semibold text-pink-600 mb-4">เพิ่มข้อมูลพัสดุ รายการย่อย</h2>
 
       <form onSubmit={ handleSubmit2}>
-       
+        
+      <div  className="items-center w-1/4"> 
         {renderInput('รหัสพัสดุหลัก', 'main_asset_id', 'text',onChange)}
-        {renderInput('ชื่อรายการพัสดุย่อย', 'sub_asset_name','text',onChange)}
+      </div>
+
+      <div  className="items-center w-3/4"> 
+        {renderTextArea('ชื่อรายการพัสดุย่อย', 'sub_asset_name','text',onChange)}
         {renderInput('จำนวน', 'quantity', 'number',onChange)}
         {renderInput('หน่วยนับ', 'unit','text',onChange)}
         {renderInput('ราคาต่อหน่วย', 'unit_price','number',onChange)}
         {renderInput('ประเภทพัสดุ', 'sub_asset_type','text',onChange)}
         {renderInput('รายละเอียด', 'sub_asset_description','text',onChange)}
-        
+      </div> 
         
         <div className="container mx-auto flex justify-center items-center space-x-4">
           {/* สามารถ uncomment หากต้องการปุ่มยกเลิก */}

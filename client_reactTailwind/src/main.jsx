@@ -9,6 +9,7 @@ import {
   Route,
 } from 'react-router-dom';
 
+
 import Login from './pages/Login.jsx';
 import Insert from './pages/Insert.jsx';
 import Insert2 from './pages/Insert2.jsx';
@@ -16,9 +17,14 @@ import EditDelete from './pages/EditDelete.jsx';
 import EditDelete2 from './pages/EditDelete2.jsx';
 import AssetSummary from './pages/AssetSummary.jsx';
 
+import ShowAllAssets from './pages/ShowAllAssets.jsx';
+
+
 
 
 // สร้าง router สำหรับจัดการเส้นทาง
+
+
 const router = createBrowserRouter([
   {
     path: "/",  // เส้นทางเริ่มต้น
@@ -45,6 +51,11 @@ const router = createBrowserRouter([
     element: <AssetSummary />,  // ใช้ component Insert ที่จะแสดง
   },
 
+  {
+    path: "/ShowAllAssets",  // เส้นทางไปยังหน้าการเพิ่มข้อมูล (Insert)
+    element: <ShowAllAssets />,  // ใช้ component Insert ที่จะแสดง
+  },
+
 ]);
 
 // สร้าง root และ render app โดยใช้ RouterProvider
@@ -53,4 +64,6 @@ createRoot(document.getElementById('root')).render(
     <RouterProvider router={router} />  {/* ใช้ RouterProvider เพื่อใช้ router */}
   </StrictMode>
 );
+
+
 

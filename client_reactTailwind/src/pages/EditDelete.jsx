@@ -97,7 +97,7 @@ const EditDelete = () => {
           <FormEditDelete
             onSubmit={handleEdit} 
             onDelete={handleDelete}
-            onSearch={handleFetchData} // ส่งฟังก์ชันค้นหาไปที่ FormEditDelete
+            onSearch={handleFetchData} // ส่งฟังก์ชันค้นหาไปที่ FormEditDelete ที่ปุ่มค้นหา
             formData={formData} 
             onChange={setFormData} // ส่ง setFormData สำหรับการเปลี่ยนแปลงอินพุตแบบไดนามิก
           />
