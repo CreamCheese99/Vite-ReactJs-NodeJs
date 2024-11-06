@@ -4,7 +4,7 @@ import renderInput from './RenderInput';
 function FormEditDelete({ formData, onChange, onSubmit, onDelete, isEditMode, onSearch }) {
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSubmit(event); // เรียก onSubmit โดยไม่ส่ง argument เพิ่มเติม
+    onSubmit(); // เรียก onSubmit โดยไม่ส่ง argument เพิ่มเติม
   };
 
   return (
@@ -43,7 +43,7 @@ function FormEditDelete({ formData, onChange, onSubmit, onDelete, isEditMode, on
           {renderInput('สถานที่ใช้งาน', 'usage_location', 'text', onChange, formData.usage_location)}
         </div>
 
-        <div className="items-center w-1/4" >
+        <div className="items-center w-1/4">
           {renderInput('วันที่ส่งมอบ', 'delivery_location', 'text', onChange, formData.delivery_location)}
         </div>
 

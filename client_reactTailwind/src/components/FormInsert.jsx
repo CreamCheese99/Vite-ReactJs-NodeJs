@@ -31,7 +31,7 @@ function FormInsert({ formData, onChange, onSubmit }) {
 
       <div  className="items-center text-sm w-3/4"> 
         {renderInput('หน่วยนับ', 'unit', 'text', onChange)}
-        {renderInput('ประจำปีงบประมาณ', 'fiscal_year', onChange)}
+        {renderInput('ประจำปีงบประมาณ', 'fiscal_year','text', onChange)}
         {renderInput('วงเงินงบประมาณ', 'budget_amount', 'text', onChange)}
         {renderInput('ประเภทเงิน', 'fund_type', 'text', onChange)}
         {renderInput('ราคากลาง', 'standard_price', 'number', onChange)}

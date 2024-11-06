@@ -20,54 +20,54 @@ const EditDelete = () => {
     delivery_location: ''
   });
 
-  // Function to fetch data based on asset_id
+  // ฟังก์ชันดึงข้อมูลตาม asset_id
   const handleFetchData = () => {
     if (!formData.asset_id) {
-      alert("Please enter a valid Asset ID to fetch data.");
+      alert("กรุณาป้อน Asset ID ที่ถูกต้องเพื่อดึงข้อมูล");
       return;
     }
 
     axios.get(`http://localhost:5000/api/assets/${formData.asset_id}`)
       .then(response => {
-        setFormData(response.data); // Populate the form with fetched data
-        console.log('Data fetched successfully:', response.data);
+        setFormData(response.data); // เติมข้อมูลฟอร์มด้วยข้อมูลที่ดึงมา
+        console.log('ดึงข้อมูลสำเร็จ:', response.data);
       })
       .catch(error => {
-        console.error('Error fetching data:', error);
-        alert('Failed to fetch data. Please check the Asset ID and try again.');
+        console.error('เกิดข้อผิดพลาดในการดึงข้อมูล:', error);
+        alert('ไม่สามารถดึงข้อมูลได้ กรุณาตรวจสอบ Asset ID และลองใหม่อีกครั้ง');
       });
   };
 
-  // Function to handle form submission (edit)
+  // ฟังก์ชันสำหรับการแก้ไขข้อมูล
   const handleEdit = () => {
     if (!formData.asset_id) {
-      alert("Please enter a valid Asset ID to update.");
+      alert("กรุณาป้อน Asset ID ที่ถูกต้องเพื่ออัปเดตข้อมูล");
       return;
     }
 
     axios.put(`http://localhost:5000/api/assets/${formData.asset_id}`, formData)
       .then(response => {
-        console.log('Data successfully updated:', response.data);
-        alert('Data updated successfully!');
+        console.log('อัปเดตข้อมูลสำเร็จ:', response.data);
+        alert('อัปเดตข้อมูลสำเร็จ!');
       })
       .catch(error => {
-        console.error('Error updating data:', error);
-        alert('Failed to update data.');
+        console.error('เกิดข้อผิดพลาดในการอัปเดตข้อมูล:', error);
+        alert('ไม่สามารถอัปเดตข้อมูลได้');
       });
   };
 
-  // Function to handle data deletion
+  // ฟังก์ชันสำหรับการลบข้อมูล
   const handleDelete = () => {
     if (!formData.asset_id) {
-      alert("Please enter a valid Asset ID to delete.");
+      alert("กรุณาป้อน Asset ID ที่ถูกต้องเพื่อทำการลบข้อมูล");
       return;
     }
 
     axios.delete(`http://localhost:5000/api/assets/${formData.asset_id}`)
       .then(response => {
-        console.log('Data successfully deleted:', response.data);
-        alert('Data deleted successfully!');
-        // Clear form data after deletion
+        console.log('ลบข้อมูลสำเร็จ:', response.data);
+        alert('ลบข้อมูลสำเร็จ!');
+        // ล้างข้อมูลในฟอร์มหลังจากลบ
         setFormData({
           main_item_name: '',
           asset_id: '',
@@ -84,8 +84,8 @@ const EditDelete = () => {
         });
       })
       .catch(error => {
-        console.error('Error deleting data:', error);
-        alert('Failed to delete data.');
+        console.error('เกิดข้อผิดพลาดในการลบข้อมูล:', error);
+        alert('ไม่สามารถลบข้อมูลได้');
       });
   };
 
@@ -93,16 +93,14 @@ const EditDelete = () => {
     <div className="bg-gray-50 text-gray-600">
       <Header />
       <div className="flex">
-        <Sidebar />
-        <div className="content">
+        <Sidebar />     
           <FormEditDelete
             onSubmit={handleEdit} 
             onDelete={handleDelete}
-            onSearch={handleFetchData} // Send search function to FormEditDelete
+            onSearch={handleFetchData} // ส่งฟังก์ชันค้นหาไปที่ FormEditDelete
             formData={formData} 
-            onChange={setFormData} // Pass setFormData for dynamic input changes
+            onChange={setFormData} // ส่ง setFormData สำหรับการเปลี่ยนแปลงอินพุตแบบไดนามิก
           />
-        </div>
       </div>
     </div>
   );
