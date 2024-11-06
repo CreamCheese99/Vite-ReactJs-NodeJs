@@ -118,10 +118,14 @@ console.log('Test = '+ req.body);
 //   }
 // });
 
+
 app.get('/api/assets/:id', async (req, res) => {
   const { id } = req.params; // ดึง id จาก params
+  const assetId = parseInt(id, 10);
   try {
-    const result = await pool.query('SELECT * FROM assets WHERE id = $1', [id]); // ใช้ $1 เพื่อป้องกัน SQL Injection
+    //console.log("Request from clinet to get id="+{id});
+    console.log('Received id:', id); 
+    const result = await pool.query('SELECT * FROM assets WHERE id = $1', [assetId]); // ใช้ $1 เพื่อป้องกัน SQL Injection
     console.log('Fetched assets:', result.rows); // แสดงผลข้อมูลที่ดึงมา
     if (result.rows.length === 0) {
       return res.status(404).json({ error: 'Asset not found' }); // หากไม่พบสินทรัพย์
