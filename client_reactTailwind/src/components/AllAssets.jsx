@@ -8,7 +8,7 @@ function AllAssets() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/assets'); // เปลี่ยน /api/assets เ
+        const response = await axios.get('http://localhost:5000/api/assets'); 
         setAssets(response.data);
       } catch (error) {
         console.error(error);
