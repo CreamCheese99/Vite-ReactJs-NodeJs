@@ -460,22 +460,23 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // สร้างอินสแตนซ์ของ LdapAuth
-const ldapAuth = new LdapAuth('10.252.92.100', 389, 'dc=kmitl,dc=ac,dc=th'); // เปลี่ยนค่าตามการตั้งค่าของคุณ
+const ldapAuth = new LdapAuth('10.252.92.100', 389, 'dc=kmitl,dc=ac,dc=th'); 
 
 // Endpoint สำหรับตรวจสอบการเข้าสู่ระบบ
 app.post('/api/login', async (req, res) => {
   const { username, password } = req.body;
 
   console.log('Request Body:', req.body); // แสดงค่าที่รับมาจาก frontend
-
-  if (!username || !password) {
+  
+  if (!username || !password) {   
     return res.status(400).json({ message: 'Username and password are required' });
   }
-
-  try {
+  
+  try { 
     const isAuthenticated = await ldapAuth.authenticate(username, password);
+    
     console.log('Authentication result:', isAuthenticated);  // แสดงผลลัพธ์การตรวจสอบผู้ใช้
-
+    
     if (isAuthenticated) {
       const userInfo = await ldapAuth.getUserInfo(username);
       console.log('User Info:', userInfo);  // แสดงข้อมูลผู้ใช้จาก LDAP

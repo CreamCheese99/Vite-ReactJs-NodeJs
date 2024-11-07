@@ -1,3 +1,4 @@
+
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
@@ -6,13 +7,14 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:5000', // เปลี่ยนให้เป็น URL ของ backend server
+        target: 'http://localhost:5001', // ใช้ port 5001 สำหรับ backend server
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '') // ลบ '/api' ออกเมื่อส่งไปที่ backend
       }
     }
   }
 });
+
 
 
 // // https://vitejs.dev/config/
