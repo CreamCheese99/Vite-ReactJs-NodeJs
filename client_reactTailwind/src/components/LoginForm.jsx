@@ -297,22 +297,22 @@
 // export default LoginForm;
 
 
-//test
+//finish next to page insert
 import React, { useState } from 'react';
 import InputField from './InputField';
 import LogoSection from './LogoSection';
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState(''); // เพิ่ม state สำหรับข้อความสำเร็จ
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault(); // ป้องกันการรีเฟรชหน้า
     
-    console.log('Username:', username);  // แสดงค่าที่กรอกในฟอร์ม
-    console.log('Password:', password);
 
     // ส่งข้อมูลไปที่ backend
     const response = await fetch('http://localhost:5001/api/login', {
@@ -327,8 +327,7 @@ function LoginForm() {
     console.log('Response from server:', data); // แสดงข้อมูลที่ได้รับจาก server
 
     if (data.success) {
-      setSuccessMessage(data.message); // แสดงข้อความสำเร็จ
-      setErrorMessage('');  // ลบข้อความผิดพลาด
+      navigate ('/insert')
     } else {
       setErrorMessage(data.message); // แสดงข้อความผิดพลาด
       setSuccessMessage('');  // ลบข้อความสำเร็จ

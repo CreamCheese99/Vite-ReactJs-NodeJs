@@ -1,5 +1,6 @@
 import React from 'react';
-import { Routes, Route, createBrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router,Routes,Route } from 'react-router-dom';
+// import { Routes, Route, createBrowserRouter } from 'react-router-dom';
 import Axios from 'axios';
 
 import Login from './pages/Login';
@@ -14,7 +15,7 @@ import AssetSummary from './pages/AssetSummary';
 const App = () => {
   const handleSubmit = async (data) => {
     try {
-      const response = await Axios.post('http://localhost:5000/api/assets', data);
+      const response = await Axios.post('http://localhost:5001/api/assets', data);
       console.log('Data inserted:', response.data);
     } catch (error) {
       console.error('Error inserting data:', error);
